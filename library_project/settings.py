@@ -12,9 +12,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os # <- import the os module
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+from os.path import join
 from dotenv import load_dotenv
 load_dotenv()
 import dj_database_url
+
+TEMPLATE_DIRS = (
+    join(BASE_DIR,  'templates'),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

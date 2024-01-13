@@ -1,0 +1,13 @@
+{% extends 'library_app/catalog/catalog_base.html' %} 
+{% block content %}
+<h2>"{{book.title}}" by {{book.author}}</h2>
+<ul>
+    <li>Genre: {{book.genre}}</li>
+    <li>Publication year: {{book.publication_year}}</li>
+    <li>Number in our collection: {{book.number_in_collection}}</li>
+    <li>ID: {{book.id}}</li>
+</ul>   
+
+<a href="{% url 'book_edit' pk=book.pk %}">Edit this item in the collection</a>
+{% endblock %}
+

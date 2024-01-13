@@ -1,0 +1,18 @@
+{% extends 'library_app/base.html' %} 
+{% block content %}
+<h2>Browse our Catalog</h2>
+<a href="{% url 'book_create' %}">Add a new book to the collection</a>
+<ul>
+    <li><a href="{% url 'catalog_fiction' %}">Fiction</a></li>
+    <li><a href="{% url 'catalog_ush' %}">US History</a></li>
+    <li><a href="{% url 'catalog_wh' %}">World History</a></li>
+    <li><a href="{% url 'catalog_ps' %}">Political Science</a></li>
+    <li><a href="{% url 'catalog_edu' %}">Education</a></li>
+    <li><a href="{% url 'catalog_aup' %}">Architecture and Urban Planning</a></li>
+    <li><a href="{% url 'catalog_nf' %}">Other Non-Fiction Titles</a></li>
+</ul>
+{% endblock %}
+
+
+
+

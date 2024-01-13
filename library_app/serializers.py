@@ -22,10 +22,10 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True
     )
     
-    book_url = serializers.ModelSerializer.serializer_url_field(
-        view_name='book_detail'
-    )
+    # book_url = serializers.ModelSerializer.serializer_url_field(
+    #     view_name='book_detail'
+    # )
 
     class Meta:
         model = Book
-        fields = ('id', 'title', 'book_url', 'author_name', 'publication_year', 'genre', 'number_in_collection' )
+        fields = ('id', 'title', 'author_name', 'publication_year', 'genre', 'number_in_collection' )

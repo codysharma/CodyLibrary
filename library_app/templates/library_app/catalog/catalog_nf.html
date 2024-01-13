@@ -1,0 +1,12 @@
+{% extends 'library_app/catalog/catalog_base.html' %} 
+{% block content %}
+<h2>Browse our other Non-Fiction Collection</h2>
+<ul>
+    {% for book in nf_catalog %}
+    <li>
+        <a href="{% url 'book_detail' pk=book.pk%}">"{{book.title}}" by {{book.author}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
