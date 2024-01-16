@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'library_app/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cody's Library</title>
@@ -15,6 +16,13 @@
       <a href="">Events</a>
       <a href="">Login/Create Account</a>
     </nav>
-    {% block content %} {% endblock %}
+    <main>
+      <div id="catalog_nav">
+        {% block sidebar %} {%endblock%}
+      </div>
+      <div id="content">
+      {% block content %} {% endblock %}
+      </div>
+    </main>
 </body>
 </html>

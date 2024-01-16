@@ -1,0 +1,27 @@
+/* Overall component structure and alignment */
+body {
+
+}
+
+main {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+#catalog_nav {
+    flex-basis: 15rem;
+    text-align: center;
+}
+
+/* Display formatting of elements */
+.nobullets {
+    list-style-type: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#catalog_nav_list li {
+    padding-top: 1rem;
+}

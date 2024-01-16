@@ -1,8 +1,6 @@
-{% extends 'library_app/base.html' %} 
-{% block content %}
-<h2>Browse our Catalog</h2>
-<a href="{% url 'book_create' %}">Add a new book to the collection</a>
-<ul>
+{% extends 'library_app/base.html' %}
+{% block sidebar%} 
+<ul id="catalog_nav_list">
     <li><a href="{% url 'catalog_fiction' %}">Fiction</a></li>
     <li><a href="{% url 'catalog_ush' %}">US History</a></li>
     <li><a href="{% url 'catalog_wh' %}">World History</a></li>
@@ -11,6 +9,17 @@
     <li><a href="{% url 'catalog_aup' %}">Architecture and Urban Planning</a></li>
     <li><a href="{% url 'catalog_nf' %}">Other Non-Fiction Titles</a></li>
 </ul>
+{%endblock%}
+{% block content %}
+    <h2>Browse our Catalog</h2>
+    <a href="{% url 'book_create' %}">Add a new book to the collection</a>
+    <ul>
+        {% for book in catalog %}
+        <li>
+            <a href="{% url 'book_detail' pk=book.pk%}">"{{book.title}}" by {{book.author}}</a>
+        </li>
+        {%endfor%}
+    </ul>
 {% endblock %}
 
 
