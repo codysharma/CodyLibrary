@@ -136,6 +136,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [BASE_DIR / 'library_project' / 'static']
 
+LOGIN_REDIRECT_URL = '/catalog/'
+LOGOUT_REDIRECT_URL = '/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -153,4 +155,4 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True

@@ -8,8 +8,14 @@ main {
     flex-direction: row;
 }
 
+nav {
+    display: inline-flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
 #catalog_nav {
-    flex-basis: 15rem;
+    flex: 0 .1 15rem;
     text-align: center;
 }
 
@@ -24,4 +30,8 @@ ul {
 
 #catalog_nav_list li {
     padding-top: 1rem;
+}
+
+.book_photo {
+    max-width: 250px;
 }

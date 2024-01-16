@@ -16,4 +16,5 @@ urlpatterns = [
     path('catalog/education', views.catalog_edu, name='catalog_edu'),
     path('catalog/architectureandurbanplanning', views.catalog_aup, name='catalog_aup'),
     path('catalog/nonfiction', views.catalog_nf, name='catalog_nf'),
+    path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my_borrowed')
 ]

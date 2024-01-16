@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Genres(models.TextChoices):
         FICTION = 'FICT', 'Fiction'
@@ -23,6 +24,8 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="books", default=1)
     genre = models.CharField(max_length=50, choices=Genres.choices, default='NF')
     number_in_collection = models.PositiveSmallIntegerField(default=1)
+    picture_url = models.TextField(null=True, blank=True)
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.title
