@@ -1,6 +1,7 @@
 {% extends 'library_app/base.html' %} 
 {% block content %}
 <h2>Add New Book to the Collection</h2>
+<h4>Need to add an author?<a href="{% url 'author_create' %}">Click here</a>
 <form method="POST" class="post-form">
     {% csrf_token %} {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>

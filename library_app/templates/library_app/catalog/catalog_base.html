@@ -12,7 +12,11 @@
 {%endblock%}
 {% block content %}
     <h2>Browse our Catalog</h2>
+    {% if user.is_staff %}
     <a href="{% url 'book_create' %}">Add a new book to the collection</a>
+    {%else %}
+    <p>Login to librarian Account to add a new book to the collection</p>
+    {%endif%}
     <ul>
         {% for book in catalog %}
         <li>

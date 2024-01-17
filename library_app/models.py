@@ -27,6 +27,9 @@ class Book(models.Model):
     picture_url = models.TextField(null=True, blank=True)
     borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
+    class Meta:
+         permissions = (("can_mark_returned", "Set book as returned"),)
+
     def __str__(self):
         return self.title
 

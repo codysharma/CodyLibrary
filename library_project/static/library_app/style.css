@@ -1,11 +1,12 @@
 /* Overall component structure and alignment */
 body {
-
+background-color: #f2dcb1be;
 }
 
 main {
     display: inline-flex;
     flex-direction: row;
+
 }
 
 nav {
@@ -20,12 +21,12 @@ nav {
 }
 
 /* Display formatting of elements */
-.nobullets {
+ul {
     list-style-type: none;
 }
 
-ul {
-    list-style-type: none;
+.bullets {
+    list-style-type: circle;
 }
 
 #catalog_nav_list li {

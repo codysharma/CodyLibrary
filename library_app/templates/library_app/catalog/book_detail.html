@@ -13,7 +13,12 @@
     <li>Status: Currently available</li>
     {%endif%}
 </ul>   
-
+{% if user.is_authenticated and book.borrower == None %}
+<button id="borrow_book_button">Borrow This Book</button>
+{%endif%}
+{%if perms.catalog.can_edit %}
 <a href="{% url 'book_edit' pk=book.pk %}">Edit this item in the collection</a>
+{%else %}
+{%endif%}
 {% endblock %}
 

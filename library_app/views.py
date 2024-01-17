@@ -6,11 +6,12 @@ from .serializers import BookSerializer
 from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
-from .forms import BookForm
+from .forms import BookForm, AuthorForm, SuggestedBookForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 # Create your views here.
@@ -30,34 +31,35 @@ def catalog(req):
     return render(req, 'library_app/catalog/catalog_base.html', {'catalog': catalog})
 
 def catalog_fiction(req):
-    fiction_catalog = Book.objects.filter(genre="FICT").order_by('author')
+    fiction_catalog = Book.objects.filter(genre="FICT").order_by('title')
     return render(req, 'library_app/catalog/catalog_fiction.html', {'fiction_catalog': fiction_catalog})
 
 def catalog_ush(req):
-    ush_catalog = Book.objects.filter(genre="USH").order_by('author')
+    ush_catalog = Book.objects.filter(genre="USH").order_by('title')
     return render(req, 'library_app/catalog/catalog_ush.html', {'ush_catalog': ush_catalog})
 
 def catalog_wh(req):
-    wh_catalog = Book.objects.filter(genre="WH")
+    wh_catalog = Book.objects.filter(genre="WH").order_by('title')
     return render(req, 'library_app/catalog/catalog_wh.html', {'wh_catalog': wh_catalog})
 
 def catalog_ps(req):
-    ps_catalog = Book.objects.filter(genre="PS")
+    ps_catalog = Book.objects.filter(genre="PS").order_by('title')
     return render(req, 'library_app/catalog/catalog_ps.html', {'ps_catalog': ps_catalog})
 
 def catalog_edu(req):
-    edu_catalog = Book.objects.filter(genre="EDU")
+    edu_catalog = Book.objects.filter(genre="EDU").order_by('title')
     return render(req, 'library_app/catalog/catalog_edu.html', {'edu_catalog': edu_catalog})
 
 def catalog_aup(req):
-    aup_catalog = Book.objects.filter(genre="AUP")
+    aup_catalog = Book.objects.filter(genre="AUP").order_by('title')
     return render(req, 'library_app/catalog/catalog_aup.html', {'aup_catalog': aup_catalog})
 
 def catalog_nf(req):
-    nf_catalog = Book.objects.filter(genre="NF")
+    nf_catalog = Book.objects.filter(genre="NF").order_by('title')
     return render(req, 'library_app/catalog/catalog_nf.html', {'nf_catalog': nf_catalog})
 
 @login_required
+@user_passes_test(lambda u:u.is_staff)
 def book_create(req):
     if req.method == 'POST':
         form = BookForm(req.POST)
@@ -69,6 +71,7 @@ def book_create(req):
         return render(req, 'library_app/catalog/new_book_form.html', {'form': form})
 
 @login_required
+@user_passes_test(lambda u:u.is_staff)
 def book_edit(req, pk):
     print(f"the pk is: {pk}")
     book = Book.objects.get(id=pk)
@@ -83,13 +86,33 @@ def book_edit(req, pk):
     return render(req, 'library_app/catalog/book_edit_form.html', {'form': form})
 
 @login_required
+@user_passes_test(lambda u:u.is_staff)
 def book_delete(_, pk):
     Book.objects.get(id=pk).delete()
     return redirect('catalog')
 
 @login_required
+@user_passes_test(lambda u:u.is_staff)
+def author_create(req):
+    if req.method == 'POST':
+            form = AuthorForm(req.POST)
+            if form.is_valid():
+                book = form.save()
+                return redirect('library_app/catalog/new_book_form.html') 
+    else:
+        form = AuthorForm()
+        return render(req, 'library_app/catalog/new_author_form.html', {'form': form})
+    
+@login_required
 def suggestion_create(req):
-    return
+    if req.method == 'POST':
+        form = SuggestedBookForm(req.POST)
+        if form.is_valid():
+            book = form.save()
+            return redirect('catalog') 
+    else:
+        form = SuggestedBookForm()
+        return render(req, 'library_app/suggestion_form.html', {'form': form})
     
 def signup(req):
   error_message = ''
@@ -116,3 +139,4 @@ class LoanedBooksByUserListView(LoginRequiredMixin, ListView):
             # .filter(status__exact='o')
             # .order_by('due_back')
         )
+
