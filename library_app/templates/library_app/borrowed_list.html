@@ -1,0 +1,26 @@
+{% extends 'library_app/base.html' %} 
+{% block content %}
+    <h3>Currently Borrowed Books</h3>
+
+    {% if borrowed_list %}
+    <div class="display_window">
+      {% for book in borrowed_list %}
+      <a href="{% url 'book_detail' pk=book.pk%}">
+      <div class="book_thumbnail">
+          <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+          <div>
+            <p>"{{book.title}}" by {{book.author}}</p>
+            <p>Currently loaned to: {{book.borrower}}</p>
+          </div>        
+      </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    {% else %}
+      <p>There are no borrowed books out.</p>
+    {% endif %}
+
+{% endblock %}
+
+

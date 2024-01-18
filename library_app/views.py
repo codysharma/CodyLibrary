@@ -12,8 +12,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-
 # Create your views here.
 def index(req):
     return render(req, 'library_app/index.html')
@@ -73,9 +71,7 @@ def book_create(req):
 @login_required
 @user_passes_test(lambda u:u.is_staff)
 def book_edit(req, pk):
-    print(f"the pk is: {pk}")
     book = Book.objects.get(id=pk)
-    print(f"the book id is: {book.id}")
     if req.method == "POST":
         form = BookForm(req.POST, instance=book)
         if form.is_valid():
@@ -98,7 +94,7 @@ def author_create(req):
             form = AuthorForm(req.POST)
             if form.is_valid():
                 book = form.save()
-                return redirect('library_app/catalog/new_book_form.html') 
+                return redirect('book_create') 
     else:
         form = AuthorForm()
         return render(req, 'library_app/catalog/new_author_form.html', {'form': form})
@@ -139,4 +135,13 @@ class LoanedBooksByUserListView(LoginRequiredMixin, ListView):
             # .filter(status__exact='o')
             # .order_by('due_back')
         )
+
+def map(req):
+    return render(req, 'library_app/map.html')
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def all_borrowed(req):
+    borrowed_list = Book.objects.filter(borrower__isnull=False)
+    return render(req, 'library_app/borrowed_list.html', {'borrowed_list': borrowed_list})
 

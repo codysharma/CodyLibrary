@@ -17,7 +17,13 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
-    
+     
+class Location(models.Model):
+     room_name = models.CharField(max_length=50)
+
+     def __str__(self):
+          return self.room_name
+
 class Book(models.Model):
     title = models.CharField(max_length=100)
     publication_year = models.PositiveSmallIntegerField(max_length=4)
@@ -26,6 +32,7 @@ class Book(models.Model):
     number_in_collection = models.PositiveSmallIntegerField(default=1)
     picture_url = models.TextField(null=True, blank=True)
     borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="location", null=True, blank=True)
 
     class Meta:
          permissions = (("can_mark_returned", "Set book as returned"),)

@@ -17,13 +17,16 @@
     {%else %}
     <p>Login to librarian Account to add a new book to the collection</p>
     {%endif%}
-    <ul>
+    <div class="display_window">
         {% for book in catalog %}
-        <li>
-            <a href="{% url 'book_detail' pk=book.pk%}">"{{book.title}}" by {{book.author}}</a>
-        </li>
-        {%endfor%}
-    </ul>
+        <a href="{% url 'book_detail' pk=book.pk%}">
+        <div class="book_thumbnail">
+            <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+            <p>"{{book.title}}" by {{book.author}}</p>        
+        </div>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 

@@ -2,9 +2,11 @@ from django import forms
 from .models import Book, Author
 
 class BookForm(forms.ModelForm):
+    author = forms.ModelChoiceField(queryset=Author.objects.order_by("name"))
+
     class Meta:
         model = Book
-        fields = ('title','publication_year','author','genre', 'number_in_collection', 'picture_url')
+        fields = ('title','publication_year','author','genre', 'location', 'number_in_collection', 'picture_url')
 
 class SuggestedBookForm(forms.ModelForm):
     class Meta:

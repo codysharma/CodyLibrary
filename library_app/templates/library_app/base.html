@@ -15,17 +15,18 @@
     <nav>
       {% if user.is_authenticated %}
       <a href="{% url 'catalog' %}">Catalog</a>
-      <a href="">Location Map</a>
+      <a href="{% url 'map' %}">Location Map</a>
       <a href="">Events</a>
       <a href="{% url 'suggestion_create' %}">Suggest Addition</a>
       <a href="{% url 'my_borrowed' %}">Check My Borrowed Books</a>
+      <a href="{% url 'all_borrowed' %}">See All Borrowed Books</a>
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit">Logout</button>
       </form>
       {% else %}
       <a href="{% url 'catalog' %}">Catalog</a>
-      <a href="">Location Map</a>
+      <a href="{% url 'map' %}">Location Map</a>
       <a href="">Events</a>
       <a href="{% url 'login' %}">Login/Create Account</a>
       {% endif %}

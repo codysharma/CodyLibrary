@@ -6,6 +6,7 @@
     <li>Genre: {{book.genre}}</li>
     <li>Publication year: {{book.publication_year}}</li>
     <li>Number in our collection: {{book.number_in_collection}}</li>
+    <li>Location: {{book.location}}</li>
     <li>ID: {{book.id}}</li>
     {% if book.borrower %}
     <li>Status: Currently out on loan</li>
@@ -14,11 +15,19 @@
     {%endif%}
 </ul>   
 {% if user.is_authenticated and book.borrower == None %}
-<button id="borrow_book_button">Borrow This Book</button>
+<button class="button" id="borrow_book_button" onclick="borrow_book()">Borrow This Book</button>
 {%endif%}
-{%if perms.catalog.can_edit %}
+{%if user.is_staff %}
 <a href="{% url 'book_edit' pk=book.pk %}">Edit this item in the collection</a>
 {%else %}
 {%endif%}
+
+<script>
+    function borrow_book() {
+        console.log("hello");
+    }
+
+</script>
+
 {% endblock %}
 
