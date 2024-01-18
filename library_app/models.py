@@ -31,7 +31,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=50, choices=Genres.choices, default='NF')
     number_in_collection = models.PositiveSmallIntegerField(default=1)
     picture_url = models.TextField(null=True, blank=True)
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, default=None)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="location", null=True, blank=True)
 
     class Meta:

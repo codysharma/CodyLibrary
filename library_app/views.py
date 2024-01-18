@@ -1,12 +1,12 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from .models import Book
+from .models import Book, User
 from .serializers import BookSerializer
 from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
-from .forms import BookForm, AuthorForm, SuggestedBookForm
+from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
@@ -86,6 +86,19 @@ def book_edit(req, pk):
 def book_delete(_, pk):
     Book.objects.get(id=pk).delete()
     return redirect('catalog')
+
+@login_required
+def book_borrow(request, pk):
+    book = Book.objects.get(id=pk)
+    borrower = User.objects.get(pk=request.user.id)
+    if request.method == "POST":
+        form = BorrowBookForm(request.POST, instance=book, borrower=borrower)
+        if form.is_valid():
+            book = form.save()
+            return redirect('book_detail', pk=book.pk)    
+    else:
+        form = BorrowBookForm(instance=book, initial={'borrower': borrower}, borrower=borrower)
+    return render(request, 'library_app/catalog/book_borrow_form.html', {'form': form, 'book': book})
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)

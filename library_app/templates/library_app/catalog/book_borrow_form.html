@@ -1,0 +1,23 @@
+{% extends 'library_app/base.html' %} 
+{% block content %}
+<h2>Borrow a Book from the Collection</h2>
+<h3>"{{book.title}}" by {{book.author}}</h3>
+<img src="{{book.picture_url}}" alt="" class="book_photo">
+<ul>
+    <li>Genre: {{book.genre}}</li>
+    <li>Publication year: {{book.publication_year}}</li>
+    <li>Number in our collection: {{book.number_in_collection}}</li>
+    <li>Location: {{book.location}}</li>
+    <li>ID: {{book.id}}</li>
+    {% if book.borrower %}
+    <li>Status: Currently out on loan</li>
+    {%else%}
+    <li>Status: Currently available</li>
+    {%endif%}
+</ul>   
+<form method="POST" class="post-form">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+{% endblock %}
+

@@ -15,7 +15,7 @@
     {%endif%}
 </ul>   
 {% if user.is_authenticated and book.borrower == None %}
-<button class="button" id="borrow_book_button" onclick="borrow_book()">Borrow This Book</button>
+<a href="{% url 'book_borrow' pk=book.pk %}"><button class="button" id="borrow_book_button">Borrow This Book</button></a>
 {%endif%}
 {%if user.is_staff %}
 <a href="{% url 'book_edit' pk=book.pk %}">Edit this item in the collection</a>
