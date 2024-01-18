@@ -14,6 +14,15 @@ nav {
     justify-content: center;
 }
 
+footer {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+footer div {
+    margin:1rem;
+}
+
 .display_window {
     display: inline-flex;
     flex-wrap: wrap;
@@ -38,6 +47,10 @@ nav {
 #catalog_nav {
     flex: 0 .1 15rem;
     text-align: center;
+}
+
+.thumbnail_text {
+    padding-left: 10px;
 }
 
 ul {

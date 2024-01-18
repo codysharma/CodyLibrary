@@ -79,7 +79,7 @@ def book_edit(req, pk):
             return redirect('book_detail', pk=book.pk)
     else:
         form = BookForm(instance=book)
-    return render(req, 'library_app/catalog/book_edit_form.html', {'form': form})
+    return render(req, 'library_app/catalog/book_edit_form.html', {'form': form, 'book': book})
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)

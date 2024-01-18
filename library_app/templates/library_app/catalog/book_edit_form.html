@@ -5,6 +5,6 @@
     {% csrf_token %} {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
-<a href="{%url 'book_delete' pk=book.id%}">Delete this book from the collection</a>
+<a href="{% url 'book_delete' pk=book.pk %}">Delete this book from the collection</a>
 {% endblock %}
 
