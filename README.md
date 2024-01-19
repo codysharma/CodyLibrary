@@ -26,6 +26,3 @@ Views:
 Stretch goals:  
 -search functionality  
 -front end design using SCSS  
-  
-  
-https://git.generalassemb.ly/lark09/django  
