@@ -15,6 +15,7 @@ from django.db.models import Q
 from django.db.models import CharField
 from django.db.models.functions import Lower
 from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
+from django.core.paginator import Paginator
 
 CharField.register_lookup(Lower)
 
@@ -26,9 +27,29 @@ def book_detail(req, pk):
     book = Book.objects.get(id=pk)
     return render(req, 'library_app/catalog/book_detail.html', {'book': book})
 
-def catalog(req):
+def list_catalog(req):
+    q = req.GET.get('q')
+    query = None
+
+    if q:
+        vector = SearchVector('title')
+        query = SearchQuery(q)
+        results = Book.objects.annotate(search=vector).filter(search=query)
+    else:
+        results = None
+
     catalog = Book.objects.all().order_by('title')
-    return render(req, 'library_app/catalog/catalog_base.html', {'catalog': catalog})
+    # Pagination
+    p = Paginator(catalog, 15)
+    page = req.GET.get('page')
+    catalog_list = p.get_page(page)
+    context = {
+        'catalog': catalog,
+        'catalog_list': catalog_list,
+        'results': results,
+        'query': query,
+        }
+    return render(req, 'library_app/catalog/catalog_base.html', context)
 
 def catalog_fiction(req):
     fiction_catalog = Book.objects.filter(genre="FICT").order_by('title')
@@ -90,18 +111,22 @@ def book_delete(_, pk):
     return redirect('catalog')
 
 @login_required
-def book_borrow(request, pk):
+def book_borrow(req, pk):
     book = Book.objects.get(id=pk)
-    if request.method == "POST":
-        form = BorrowBookForm(request.POST, instance=book)
+    if req.method == "POST":
+        form = BorrowBookForm(req.POST, instance=book)
         if form.is_valid():
             book = form.save(commit=False)
-            book.borrower = request.user
+            book.borrower = req.user
             book.save()
             return redirect('book_detail', pk=book.pk)    
     else:
         form = BorrowBookForm(instance=book)
-    return render(request, 'library_app/catalog/book_borrow_form.html', {'form': form, 'book': book})
+    context = {
+        'form': form, 
+        'book': book
+    }
+    return render(req, 'library_app/catalog/book_borrow_form.html', context)
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)

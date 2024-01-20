@@ -9,11 +9,19 @@ main {
     padding-left: 5%;
 }
 
-nav {
-    display: inline-flex;
-    gap: 2rem;
+header{
+    display: flex;
+    align-items: center;
     justify-content: center;
-    width: fit-content;
+}
+
+#header-div-one {
+    padding-top: 1em;
+}
+
+nav {
+    width: max-content;
+    height: 60px;
 }
 
 footer {

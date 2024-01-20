@@ -1,26 +1,62 @@
 {% extends 'library_app/base.html' %}
 {%block search%}
 <br>
-    <form>
+<!------------------------ Search function -->
+    <form method="get" action="{% url 'list_catalog' %}">
         <input type="text" name="q" placeholder="Search the catalog">
-        <a href="{% url 'search_page' %}"><button type="button" class="btn btn-outline-info btn-sm">Search</button></a>
+        <a href="{% url 'search_page' %}"><button type="submit" class="btn btn-outline-info btn-sm">Search</button></a>
     </form>
 {%endblock%}
 {% block content %}
-<h2>Browse our Catalog</h2>
-<div class="display_window">
-    {% for book in catalog %}
-    <a href="{% url 'book_detail' pk=book.pk%}">
-    <div class="book_thumbnail">
-        <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
-        <div class="thumbnail_text">
-            <p class="thumbnail_title">{{book.title}}</p>
-            <p>By: {{book.author}}</p>    
-        </div>        
+<!-- -----------------Search results get shown -->
+{% if results %}
+    <p>Results: {{results|length}}</p>
+    <div class="display_window">
+        {% for book in results %}
+        <a href="{% url 'book_detail' pk=book.pk%}">
+            <div class="book_thumbnail">
+                <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+                <div class="thumbnail_text">
+                    <p class="thumbnail_title">{{book.title}}</p>
+                    <p>By: {{book.author}}</p>    
+                </div>        
+            </div>
+        </a>
+        {% endfor %}
     </div>
-    </a>
-    {% endfor %}
-</div>
+{% else %}
+    <h2>Browse our Catalog</h2>
+    <!---------------------- Pagination -->
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+        {% if catalog_list.has_previous %}
+
+          <li class="page-item"><a class="page-link" href="?page={{ catalog_list.previous_page_number }}">Previous</a></li>
+          {% endif %}
+
+          <li class="page-item"><p class="page-link disabled">Current page: {{catalog_list.number}} of {{catalog_list.paginator.num_pages}}</p></li>
+
+          {% if catalog_list.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{catalog_list.next_page_number}}">Next</a></li>
+          {% endif %}
+        </ul>
+    </nav>
+    <!-- ------------Main display window -->
+    <div class="display_window">
+        {% for book in catalog_list %}
+        <a href="{% url 'book_detail' pk=book.pk%}">
+        <div class="book_thumbnail">
+            <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+            <div class="thumbnail_text">
+                <p class="thumbnail_title">{{book.title}}</p>
+                <p>By: {{book.author}}</p>    
+            </div>        
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
 {% endblock %}
 
 
