@@ -1,18 +1,18 @@
 {% extends 'library_app/catalog/catalog_base.html' %} 
 {% block content %}
-<h2>Browse our Political Science Collection</h2>
+{% if results %}
+<p>Results: {{results|length}}</p>
 <div class="display_window">
-    {% for book in ps_catalog %}
+    {% for book in results %}
     <a href="{% url 'book_detail' pk=book.pk%}">
     <div class="book_thumbnail">
-        <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
         <div class="thumbnail_text">
             <p class="thumbnail_title">{{book.title}}</p>
-            <p>By: {{book.author}}</p>    
-        </div>         
+        </div>        
     </div>
     </a>
     {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
 

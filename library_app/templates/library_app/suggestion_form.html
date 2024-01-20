@@ -2,7 +2,7 @@
 {% block content %}
 <h4>Suggest A New Addition to the Collection</h4>
 <form method="POST" class="post-form">
-    {% csrf_token %} {{ form.as_p }}
+    {% csrf_token %} {{ form.as_table }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form>
 {% endblock %}

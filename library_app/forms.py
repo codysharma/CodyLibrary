@@ -1,5 +1,6 @@
 from django import forms
 from .models import Book, Author, User
+from django.contrib.auth.models import User
 
 class BookForm(forms.ModelForm):
     author = forms.ModelChoiceField(queryset=Author.objects.order_by("name"))
@@ -16,18 +17,11 @@ class SuggestedBookForm(forms.ModelForm):
         fields = ('title', 'publication_year', 'author', 'picture_url')
 
 class BorrowBookForm(forms.ModelForm):
-    borrower = forms.ChoiceField(choices=[])
 
-    def __init__(self, *args, **kwargs):
-        borrower = kwargs.pop('borrower')
-        super(BorrowBookForm, self).__init__(*args, **kwargs)
-
-        if borrower:
-            self.fields['borrower'].choices = [(borrower, borrower)]
-    
     class Meta:
         model = Book
-        fields = ('borrower',)
+        fields = ()
+        # Could implement an until date field as well
 
 class AuthorForm(forms.ModelForm):
     class Meta:

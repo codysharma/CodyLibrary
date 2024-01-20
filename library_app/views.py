@@ -1,9 +1,9 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from .models import Book, User
-from .serializers import BookSerializer
-from rest_framework import generics
+from .models import Book, User, Author
+# from .serializers import BookSerializer
+# from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
 from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm
@@ -11,14 +11,16 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.db.models import CharField
+from django.db.models.functions import Lower
+from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
+
+CharField.register_lookup(Lower)
 
 # Create your views here.
 def index(req):
     return render(req, 'library_app/index.html')
-
-# class book_detail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
 
 def book_detail(req, pk):
     book = Book.objects.get(id=pk)
@@ -90,14 +92,15 @@ def book_delete(_, pk):
 @login_required
 def book_borrow(request, pk):
     book = Book.objects.get(id=pk)
-    borrower = User.objects.get(pk=request.user.id)
     if request.method == "POST":
-        form = BorrowBookForm(request.POST, instance=book, borrower=borrower)
+        form = BorrowBookForm(request.POST, instance=book)
         if form.is_valid():
-            book = form.save()
+            book = form.save(commit=False)
+            book.borrower = request.user
+            book.save()
             return redirect('book_detail', pk=book.pk)    
     else:
-        form = BorrowBookForm(instance=book, initial={'borrower': borrower}, borrower=borrower)
+        form = BorrowBookForm(instance=book)
     return render(request, 'library_app/catalog/book_borrow_form.html', {'form': form, 'book': book})
 
 @login_required
@@ -158,3 +161,17 @@ def all_borrowed(req):
     borrowed_list = Book.objects.filter(borrower__isnull=False)
     return render(req, 'library_app/borrowed_list.html', {'borrowed_list': borrowed_list})
 
+def search_page(req):
+    q = req.GET.get('q')
+
+    if q:
+        # vector = SearchVector('title', '__author')
+        # vector = SearchVector('title', 'book__author') 
+        # Neither of the above worked. Nor did trying 2 searches and joining them. I could simply pass 2 searches as separate params at worst.
+        vector = SearchVector('title')
+        query = SearchQuery(q)
+        results = Book.objects.annotate(search=vector).filter(search=query)
+    else:
+        results = None
+
+    return render(req, 'library_app/catalog/search_page.html', {'results': results})

@@ -6,7 +6,7 @@
     <div class="display_window">
       {% for book in borrowed_list %}
       <div class="book_thumbnail">
-          <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+          <!-- <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo"> -->
           <div>
             <p>"{{book.title}}" by {{book.author}}</p>
             <p>Currently loaned to: {{book.borrower}}</p>

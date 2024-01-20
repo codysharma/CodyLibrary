@@ -35,6 +35,7 @@ footer div {
 
 .book_thumbnail {
     width: 10rem;
+    height: 12rem;
     background-color: aliceblue;
     outline: 1px solid black;
     border-radius: 5px;
@@ -42,6 +43,7 @@ footer div {
     padding: .5rem;
     display: flex;
     justify-content: center;
+    overflow: hidden;
 }
 
 #catalog_nav {
@@ -51,6 +53,17 @@ footer div {
 
 .thumbnail_text {
     padding-left: 10px;
+    overflow: hidden;
+    max-width: 100%;
+
+}
+
+.thumbnail_title {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 5;
 }
 
 ul {
