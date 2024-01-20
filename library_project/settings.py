@@ -47,12 +47,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.postgres',
-    'corsheaders', # <- add this
+    'corsheaders', 
     'djoser',
     'rest_framework',
     'rest_framework.authtoken',
     'library_app',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

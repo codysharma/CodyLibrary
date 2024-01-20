@@ -1,9 +1,11 @@
 {% extends 'library_app/base.html' %} 
 {% block content %}
+
 <h4>Suggest A New Addition to the Collection</h4>
 <form method="POST" class="post-form">
-    {% csrf_token %} {{ form.as_table }}
-    <button type="submit" class="save btn btn-default">Save</button>
+    {% csrf_token %} 
+    {{ form.as_p}}
+    <button type="submit" class="save btn btn-info btn-sm">Save</button>
 </form>
 {% endblock %}
 

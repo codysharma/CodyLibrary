@@ -12,6 +12,7 @@ djoser = "*"
 django-cors-headers = "*"
 whitenoise = "*"
 python-dotenv = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 

@@ -1,5 +1,11 @@
 -Add search functionality to also search author field - how since it's a foreign key?  
--How to integrate the search bar rather than have it be a separate page?  
+-How to integrate the search bar rather than have it be a separate page?    
+  
+-Make a "requests" model and button for users to request books already loaned out.  
+-Make events functionality, including a register button, so librarians can see who has registered.  
+
+
+-For formatting code reminders, check: https://bootswatch.com/yeti/   
 
 https://docs.google.com/document/d/1gmu9GAeCS_waqOrF2PBaO9l8FWh-IYKIlyQEQYekFCI/edit?usp=sharing  
 

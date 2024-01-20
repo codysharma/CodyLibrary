@@ -1,17 +1,19 @@
 body {
-background-color: #f2dcb1be;
+    padding-left: 7%;
 }
 
 main {
     display: inline-flex;
     flex-direction: row;
     color: black;
+    padding-left: 5%;
 }
 
 nav {
     display: inline-flex;
     gap: 2rem;
     justify-content: center;
+    width: fit-content;
 }
 
 footer {
@@ -36,7 +38,7 @@ footer div {
 .book_thumbnail {
     width: 10rem;
     height: 12rem;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     outline: 1px solid black;
     border-radius: 5px;
     margin: 1rem;
@@ -55,6 +57,7 @@ footer div {
     padding-left: 10px;
     overflow: hidden;
     max-width: 100%;
+    font-size: small;
 
 }
 

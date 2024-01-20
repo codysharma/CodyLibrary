@@ -1,29 +1,13 @@
 {% extends 'library_app/base.html' %}
-{% block sidebar%} 
-<ul id="catalog_nav_list">
-    <li><a href="{% url 'catalog_fiction' %}">Fiction</a></li>
-    <li><a href="{% url 'catalog_ush' %}">US History</a></li>
-    <li><a href="{% url 'catalog_wh' %}">World History</a></li>
-    <li><a href="{% url 'catalog_ps' %}">Political Science</a></li>
-    <li><a href="{% url 'catalog_edu' %}">Education</a></li>
-    <li><a href="{% url 'catalog_aup' %}">Architecture and Urban Planning</a></li>
-    <li><a href="{% url 'catalog_nf' %}">Other Non-Fiction Titles</a></li>
-    <li><a href="{% url 'search_page' %}">Search</a></li>
-</ul>
-{%endblock%}
 {%block search%}
+<br>
     <form>
         <input type="text" name="q" placeholder="Search the catalog">
-        <a href="{% url 'search_page' %}"><button>Search</button></a>
+        <a href="{% url 'search_page' %}"><button type="button" class="btn btn-outline-info btn-sm">Search</button></a>
     </form>
 {%endblock%}
 {% block content %}
 <h2>Browse our Catalog</h2>
-{% if user.is_staff %}
-<a href="{% url 'book_create' %}">Add a new book to the collection</a>
-{%else %}
-<p>Login to librarian Account to add a new book to the collection</p>
-{%endif%}
 <div class="display_window">
     {% for book in catalog %}
     <a href="{% url 'book_detail' pk=book.pk%}">

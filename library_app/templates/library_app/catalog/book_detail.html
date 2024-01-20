@@ -1,4 +1,6 @@
-{% extends 'library_app/catalog/catalog_base.html' %} 
+{% extends 'library_app/catalog/catalog_base.html' %}
+{% block search %}
+{% endblock %} 
 {% block content %}
 <h2>"{{book.title}}" by {{book.author}}</h2>
 <img src="{{book.picture_url}}" alt="" class="book_photo">
@@ -15,19 +17,11 @@
     {%endif%}
 </ul>   
 {% if user.is_authenticated and book.borrower == None %}
-<a href="{% url 'book_borrow' pk=book.pk %}"><button class="button" id="borrow_book_button">Borrow This Book</button></a>
+<a href="{% url 'book_borrow' pk=book.pk %}"><button type="button" class="btn btn-primary" id="borrow_book_button btn-sm">Request This Book</button></a>
 {%endif%}
 {%if user.is_staff %}
-<a href="{% url 'book_edit' pk=book.pk %}">Edit this item in the collection</a>
+<a href="{% url 'book_edit' pk=book.pk %}"><button type="button" class="btn btn-info">Edit this item</button></a>
 {%else %}
 {%endif%}
-
-<script>
-    function borrow_book() {
-        console.log("hello");
-    }
-
-</script>
-
 {% endblock %}
 
