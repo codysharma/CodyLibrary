@@ -16,6 +16,7 @@ from django.db.models import CharField
 from django.db.models.functions import Lower
 from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
 from django.core.paginator import Paginator
+import requests
 
 CharField.register_lookup(Lower)
 
@@ -200,3 +201,23 @@ def search_page(req):
         results = None
 
     return render(req, 'library_app/catalog/search_page.html', {'results': results})
+
+
+def api_call(req):
+    api_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9781603842037"
+    # "https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}"
+
+    response = requests.get(api_url)
+    json = response.json()
+
+    print(json["items"][0]["volumeInfo"]["title"], json["items"][0]["volumeInfo"]["authors"][0])
+
+    result = {
+        "title": json["items"][0]["volumeInfo"]["title"],
+        "author": json["items"][0]["volumeInfo"]["authors"][0],
+        "published_date": json["items"][0]["volumeInfo"]["publishedDate"],
+        "desription": json["items"][0]["volumeInfo"]["description"],
+        "thumbnail": json["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"],
+    }
+
+    return render(req, 'library_app/catalog/search_page.html', {'result': result})

@@ -1,18 +1,7 @@
 {% extends 'library_app/catalog/catalog_base.html' %} 
 {% block content %}
-{% if results %}
-<p>Results: {{results|length}}</p>
-<div class="display_window">
-    {% for book in results %}
-    <a href="{% url 'book_detail' pk=book.pk%}">
-    <div class="book_thumbnail">
-        <div class="thumbnail_text">
-            <p class="thumbnail_title">{{book.title}}</p>
-        </div>        
-    </div>
-    </a>
-    {% endfor %}
-</div>
-{% endif %}
+API search page
+<p>{{result.title}} by {{result.author}}</p>
+<img src="{{result.thumbnail}}">
 {% endblock %}
 
