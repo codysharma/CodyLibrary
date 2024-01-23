@@ -27,7 +27,6 @@
 {% else %}
     <h2>Browse our Catalog</h2>
     <!---------------------- Pagination -->
-
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
         {% if catalog_list.has_previous %}
@@ -46,14 +45,23 @@
     <div class="display_window">
         {% for book in catalog_list %}
         <a href="{% url 'book_detail' pk=book.pk%}">
-        <div class="book_thumbnail">
+        <div class="book_thumbnail{% if show_transition %} show{% endif %}">
             <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
             <div class="thumbnail_text">
                 <p class="thumbnail_title">{{book.title}}</p>
                 <p>By: {{book.author}}</p>    
-            </div>        
+            </div>
         </div>
         </a>
+        <!-- <a href="{% url 'book_detail' pk=book.pk%}">
+        <div class="card border-secondary mb-3">
+            <div class="card-header">{{book.title}}</div>
+            <div class="card-body">
+              <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+              <p class="card-text">By: {{book.author}}</p>
+            </div>
+          </div>
+        </a> -->
         {% endfor %}
     </div>
     {% endif %}

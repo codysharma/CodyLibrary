@@ -40,10 +40,47 @@ footer div {
 
 .display_window a:link {
     text-decoration: none;
-    color: inherit
+    color: black
 }
 
 .book_thumbnail {
+    width: 10rem;
+    height: 12rem;
+    /* background-color: aliceblue; */
+    outline: 3px solid rgb(214, 214, 214);
+    border-radius: 5px;
+    margin: 1rem;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    animation: createBox .75s;
+}
+@keyframes createBox {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.thumbnail_text {
+    padding-left: 10px;
+    overflow: hidden;
+    max-width: 100%;
+    font-size: small;
+}
+
+.thumbnail_title {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 5;
+}
+/* CARDS */
+.card {
     width: 10rem;
     height: 12rem;
     /* background-color: aliceblue; */
@@ -54,14 +91,15 @@ footer div {
     display: flex;
     justify-content: center;
     overflow: hidden;
+    opacity: 0;
+    transition: opacity ease-in 1.5s;
 }
 
-#catalog_nav {
-    flex: 0 .1 15rem;
-    text-align: center;
+.card.show {
+    opacity: 1;
 }
 
-.thumbnail_text {
+.card_text {
     padding-left: 10px;
     overflow: hidden;
     max-width: 100%;
@@ -69,12 +107,18 @@ footer div {
 
 }
 
-.thumbnail_title {
+.card_header {
    overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-box-orient: vertical;
    -webkit-line-clamp: 5;
+}
+/* END CARDS */
+
+#catalog_nav {
+    flex: 0 .1 15rem;
+    text-align: center;
 }
 
 ul {
@@ -96,3 +140,12 @@ ul {
 .book_thumbnail_photo {
     height: 100px
 }
+
+/* #content {
+    opacity: 0;
+    transition: opacity ease-in 2s;
+}
+
+#content.show {
+    opacity: 1;
+} */

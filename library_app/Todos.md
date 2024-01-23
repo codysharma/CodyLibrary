@@ -2,7 +2,6 @@
 
 -Add by isbn instead
 -The mobile nav bar not working    
--Make the divs into cards instead  
 -Make a "requests" model and button for users to request books already loaned out.  
 -Make events functionality, including a register button, so librarians can see who has registered.  
 -Make front page with "what our staff is reading"
