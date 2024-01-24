@@ -1,11 +1,34 @@
 {% extends 'library_app/base.html' %} 
 {% block content %}
 <h3>Add New Book to the Collection</h>
-<h6>Need to add an author?<a href="{% url 'author_create' %}">Click here</a></h6>
-<form method="POST" class="post-form">
-    {% csrf_token %} {{ form.as_p }}
-    <button type="submit" class="save btn btn-info btn-sm">Save</button>
-</form>
-<h4>Or Search By ISBN</h4>
+<h6>Need to add an author?<a href="{% url 'author_create' %}"><button class="btn btn-outline-info btn-sm">Click here</button></a></h6>
+<div id="new-book-content">
+    <div id="new-book-form">
+    <form method="POST" class="post-form">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="save btn btn-info btn-sm">Save</button>
+    </form>
+    </div>
+    <div id="isbn_search">
+    <h4>Search By ISBN for Info</h4></a>
+    <form method="get" action="{% url 'book_create' %}">
+        <input type="text" name="q" placeholder="Enter ISBN">
+        <a href="{% url 'isbn_search' %}"><button type="submit" class="btn btn-outline-info btn-sm">Search</button></a>
+    </form>
+    {% if result %}
+        <p>ISBN Search Results</p>
+        <div class="isbn_results">
+            <ul>
+                <li>{{result.title}}</li>
+                <li>{{result.author}}</li>
+                <li>{{result.published_date}}</li>
+                <li>{{result.description}}</li>
+                <li>{{result.thumbnail}}</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
+
 

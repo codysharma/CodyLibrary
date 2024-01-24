@@ -5,6 +5,7 @@
     {% if borrowed_list %}
     <div class="display_window">
       {% for book in borrowed_list %}
+      <a href="{% url 'book_edit' pk=book.pk %}">
       <div class="book_thumbnail">
           <!-- <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo"> -->
           <div>

@@ -22,7 +22,11 @@ CharField.register_lookup(Lower)
 
 # Create your views here.
 def index(req):
-    return render(req, 'library_app/index.html')
+    staff_list = Book.objects.filter(title="1491: New Revelations of the Americas Before Columbus")
+    context = {
+        'staff_list': staff_list
+    }
+    return render(req, 'library_app/index.html', context)
 
 def book_detail(req, pk):
     book = Book.objects.get(id=pk)
@@ -33,9 +37,10 @@ def list_catalog(req):
     query = None
 
     if q:
-        vector = SearchVector('title')
+        vector = SearchVector('title', 'author__name') 
+        # vector = SearchVector('title')
         query = SearchQuery(q)
-        results = Book.objects.annotate(search=vector).filter(search=query)
+        results = Book.objects.annotate(search=SearchVector('title','author__name')).filter(Q(search=query) | Q(author__name__icontains=q))
     else:
         results = None
 
@@ -90,7 +95,26 @@ def book_create(req):
             return redirect('book_detail', pk=book.pk) 
     else:
         form = BookForm()
-        return render(req, 'library_app/catalog/new_book_form.html', {'form': form})
+        q = req.GET.get('q')
+
+        if q:
+            api_url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{q}"
+            response = requests.get(api_url)
+            json = response.json()
+            result = {
+                "title": json["items"][0]["volumeInfo"]["title"],
+                "author": json["items"][0]["volumeInfo"]["authors"][0],
+                "published_date": json["items"][0]["volumeInfo"]["publishedDate"],
+                "desription": json["items"][0]["volumeInfo"]["description"],
+                "thumbnail": json["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"],
+            }
+        else:
+            result = None
+        context = {
+            'form': form,
+            'result': result
+        }
+        return render(req, 'library_app/catalog/new_book_form.html', context)
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)
@@ -181,43 +205,49 @@ class LoanedBooksByUserListView(LoginRequiredMixin, ListView):
 def map(req):
     return render(req, 'library_app/map.html')
 
+def events_list(req):
+    return render(req, 'library_app/events_list.html')
+
 @login_required
 @user_passes_test(lambda u:u.is_staff)
 def all_borrowed(req):
     borrowed_list = Book.objects.filter(borrower__isnull=False)
     return render(req, 'library_app/borrowed_list.html', {'borrowed_list': borrowed_list})
 
-def search_page(req):
+def book_search(req):
     q = req.GET.get('q')
-
     if q:
-        # vector = SearchVector('title', '__author')
-        # vector = SearchVector('title', 'book__author') 
-        # Neither of the above worked. Nor did trying 2 searches and joining them. I could simply pass 2 searches as separate params at worst.
-        vector = SearchVector('title')
+        vector = SearchVector('title', 'author__name') 
+        # vector = SearchVector('title')
         query = SearchQuery(q)
-        results = Book.objects.annotate(search=vector).filter(search=query)
+        results = Book.objects.annotate(search=SearchVector('title','author__name')).filter(Q(search=query) | Q(author__name__icontains=q))
     else:
         results = None
+    # return render(req, 'library_app/catalog/search_page.html', {'results': results})
+    return results
 
-    return render(req, 'library_app/catalog/search_page.html', {'results': results})
+def isbn_form(req):
+    return render (req, 'library_app/catalog/isbn_form.html')
 
-
-def api_call(req):
-    api_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9781603842037"
-    # "https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}"
-
+def isbn_search(req, isbn):
+    q = req.GET.get('q')
+    print(q)
+    api_url = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{isbn}"
+    # Test isbn: 9781603842037
     response = requests.get(api_url)
     json = response.json()
 
-    print(json["items"][0]["volumeInfo"]["title"], json["items"][0]["volumeInfo"]["authors"][0])
+    # print(json["items"][0]["volumeInfo"]["title"], json["items"][0]["volumeInfo"]["authors"][0])
 
-    result = {
+    if json:
+        result = {
         "title": json["items"][0]["volumeInfo"]["title"],
         "author": json["items"][0]["volumeInfo"]["authors"][0],
         "published_date": json["items"][0]["volumeInfo"]["publishedDate"],
         "desription": json["items"][0]["volumeInfo"]["description"],
         "thumbnail": json["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"],
-    }
+        }
+    else:
+        result = None
 
-    return render(req, 'library_app/catalog/search_page.html', {'result': result})
+    return result

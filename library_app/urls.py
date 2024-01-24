@@ -18,10 +18,15 @@ urlpatterns = [
     path('catalog/architectureandurbanplanning', views.catalog_aup, name='catalog_aup'),
     path('catalog/nonfiction', views.catalog_nf, name='catalog_nf'),
     path('catalog/suggest', views.suggestion_create, name='suggestion_create'),
-    path('catalog/search/', views.search_page, name='search_page'),
-    path('api/', views.api_call, name='api_call'),
+    path('catalog/search/', views.book_search, name='book_search'),
     path('borrowed/', views.all_borrowed, name='all_borrowed'),
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my_borrowed'),
     path('authors/create', views.author_create, name='author_create'),
-    path('map', views.map, name='map')
+    path('map', views.map, name='map'),
+    path('events', views.events_list, name='event_list'),
+
+
+    path('catalog/create/search/', views.isbn_search, name='isbn_search'),
+    path('isbn_search', views.isbn_form, name='isbn_form'),
+    # path('isbn_search/<int:isbn>', views.isbn_search, name='isbn_search')
 ]

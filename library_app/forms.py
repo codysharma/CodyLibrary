@@ -7,7 +7,7 @@ class BookForm(forms.ModelForm):
 
     class Meta:
         model = Book
-        fields = ('title','publication_year','author','genre', 'location', 'number_in_collection', 'picture_url')
+        fields = ('title','publication_year','author','genre', 'location', 'number_in_collection', 'picture_url', 'borrower')
 
 class SuggestedBookForm(forms.ModelForm):
     author = forms.ModelChoiceField(queryset=Author.objects.order_by("name"))

@@ -1,12 +1,23 @@
 {% extends 'library_app/base.html' %} 
 {% block content %}
 <h2>Welcome to Cody's Library</h2>
-<p>A project seeking to practice using Django and PostgreSQL with Django templates, this is an inventory management system useful for a personal library, workshop, lab, or similar set up requiring materials and shared use.</p>
-<p>Some key features:</p>
-<ul>
-    <li>Integration with PostgreSQL for backend data management using the inbuild models and forms functionality of Django</li>
-    <li>Search functionality currently for titles. Will add authors as well as partial text searching</li>
-    <li>Multiple level functionality depending on authorization: just browsing, user who can check out books or suggest new ones, librarians who can edit books, add books, delete books, and mark as returned</li>
-</ul>
+<div>
+    <h4>Recommendations</h4>
+    <p>Reading lists to come</p>
+</div>
+<div id="staff_reads">
+    <h4>What Our Staff is Currently Reading</h4>
+    {% for book in staff_list %}
+        <a href="{% url 'book_detail' pk=book.pk%}">
+        <div class="book_thumbnail">
+            <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+            <div class="thumbnail_text">
+                <p class="thumbnail_title">{{book.title}}</p>
+                <p>By: {{book.author}}</p>    
+            </div>
+        </div>
+        </a>
+        {% endfor %}
+</div>
 {% endblock %}
 

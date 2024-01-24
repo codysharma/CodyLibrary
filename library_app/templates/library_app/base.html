@@ -36,8 +36,6 @@
                   <a class="dropdown-item" href="{% url 'catalog_edu' %}">Education</a>
                   <a class="dropdown-item" href="{% url 'catalog_aup' %}">Architecture and Urban Planning</a>
                   <a class="dropdown-item" href="{% url 'catalog_nf' %}">Other Non-Fiction Titles</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'search_page' %}">Catalog Search</a>
                   {% if user.is_authenticated %}
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'book_create' %}">Add New Item</a>
@@ -48,7 +46,7 @@
                 <a class="nav-link" href="{% url 'map' %}">Location Map</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Events</a>
+                <a class="nav-link" href="{% url 'event_list' %}">Events</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">

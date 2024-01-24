@@ -38,21 +38,21 @@ footer div {
     flex-wrap: wrap;
 }
 
-.display_window a:link {
+a:link {
     text-decoration: none;
     color: black
 }
 
 .book_thumbnail {
-    width: 10rem;
-    height: 12rem;
+    width: 15rem;
+    height: 7.5rem;
     /* background-color: aliceblue; */
     outline: 3px solid rgb(214, 214, 214);
     border-radius: 5px;
     margin: 1rem;
     padding: .5rem;
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
     overflow: hidden;
     animation: createBox .75s;
 }
@@ -77,7 +77,11 @@ footer div {
    text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-box-orient: vertical;
-   -webkit-line-clamp: 5;
+   -webkit-line-clamp: 3;
+}
+
+.book_thumbnail_photo {
+    height: 100px;
 }
 /* CARDS */
 .card {
@@ -137,10 +141,6 @@ ul {
     max-width: 250px;
 }
 
-.book_thumbnail_photo {
-    height: 100px
-}
-
 /* #content {
     opacity: 0;
     transition: opacity ease-in 2s;
@@ -149,3 +149,13 @@ ul {
 #content.show {
     opacity: 1;
 } */
+
+#search-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#new-book-content {
+    display: flex;
+}

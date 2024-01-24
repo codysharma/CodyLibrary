@@ -2,10 +2,12 @@
 {%block search%}
 <br>
 <!------------------------ Search function -->
+<div id="search-div">
     <form method="get" action="{% url 'list_catalog' %}">
-        <input type="text" name="q" placeholder="Search the catalog">
-        <a href="{% url 'search_page' %}"><button type="submit" class="btn btn-outline-info btn-sm">Search</button></a>
+        <input type="text" name="q" placeholder="Search our catalog">
+        <a href="{% url 'book_search' %}"><button type="submit" class="btn btn-outline-info btn-sm">Search</button></a>
     </form>
+</div>
 {%endblock%}
 {% block content %}
 <!-- -----------------Search results get shown -->
@@ -45,7 +47,7 @@
     <div class="display_window">
         {% for book in catalog_list %}
         <a href="{% url 'book_detail' pk=book.pk%}">
-        <div class="book_thumbnail{% if show_transition %} show{% endif %}">
+        <div class="book_thumbnail">
             <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
             <div class="thumbnail_text">
                 <p class="thumbnail_title">{{book.title}}</p>
@@ -53,18 +55,9 @@
             </div>
         </div>
         </a>
-        <!-- <a href="{% url 'book_detail' pk=book.pk%}">
-        <div class="card border-secondary mb-3">
-            <div class="card-header">{{book.title}}</div>
-            <div class="card-body">
-              <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
-              <p class="card-text">By: {{book.author}}</p>
-            </div>
-          </div>
-        </a> -->
         {% endfor %}
     </div>
-    {% endif %}
+{% endif %}
 {% endblock %}
 
 
