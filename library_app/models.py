@@ -33,12 +33,20 @@ class Book(models.Model):
     picture_url = models.URLField(null=True, blank=True)
     borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, default=None)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="location", null=True, blank=True)
+    recommended_by = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
          permissions = (("can_mark_returned", "Set book as returned"),)
 
     def __str__(self):
         return self.title
+
+class ReadingList(models.Model):
+     list_title = models.CharField(max_length=100)
+     books = models.ManyToManyField(Book, related_name="reading_lists", blank=True, null=True, default=None)
+
+     def __str__(self):
+          return self.list_title
 
 class Event(models.Model):
      title = models.CharField(max_length=100)

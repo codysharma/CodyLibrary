@@ -40,7 +40,14 @@ footer div {
 
 a:link {
     text-decoration: none;
-    color: black
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: inherit;
 }
 
 .book_thumbnail {
@@ -55,6 +62,7 @@ a:link {
     align-items: flex-start;
     overflow: hidden;
     animation: createBox .75s;
+    
 }
 @keyframes createBox {
     from {
@@ -63,6 +71,18 @@ a:link {
     to {
         transform: scale(1);
     }
+}
+
+.book_thumbnail:hover {
+    transform: scale(1.1);
+    transition: all .2s ease;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 20%);
+    
+}
+
+#book_thumbnail_index {
+    height: 9rem;
+    width: 17rem;
 }
 
 .thumbnail_text {
@@ -158,4 +178,16 @@ ul {
 
 #new-book-content {
     display: flex;
+}
+
+#new-book-form {
+    margin-right: 10px;
+}
+
+#isbn_table_display {
+    max-width: 100px;
+}
+
+#currently_reading_display {
+    display: inline-flex;
 }

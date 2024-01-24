@@ -7,17 +7,20 @@
 </div>
 <div id="staff_reads">
     <h4>What Our Staff is Currently Reading</h4>
+    <div id="currently_reading_display">
     {% for book in staff_list %}
         <a href="{% url 'book_detail' pk=book.pk%}">
-        <div class="book_thumbnail">
+        <div class="book_thumbnail" id="book_thumbnail_index">
             <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
             <div class="thumbnail_text">
                 <p class="thumbnail_title">{{book.title}}</p>
-                <p>By: {{book.author}}</p>    
+                <p>By: {{book.author}}</p>  
+                <p>Staff Member Reading It: {{book.recommended_by}}</p>  
             </div>
         </div>
         </a>
         {% endfor %}
+    </div>
 </div>
 {% endblock %}
 

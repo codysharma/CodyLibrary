@@ -1,7 +1,7 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from .models import Book, User, Author
+from .models import Book, User, Author, ReadingList
 # from .serializers import BookSerializer
 # from rest_framework import generics
 from django.views import View
@@ -22,10 +22,13 @@ CharField.register_lookup(Lower)
 
 # Create your views here.
 def index(req):
-    staff_list = Book.objects.filter(title="1491: New Revelations of the Americas Before Columbus")
+    staff_list = Book.objects.filter(recommended_by__isnull=False)
+    book_lists = ReadingList.objects.all()
     context = {
-        'staff_list': staff_list
-    }
+        'staff_list': staff_list,
+        'book_lists': book_lists
+        }
+    print(book_lists[0])
     return render(req, 'library_app/index.html', context)
 
 def book_detail(req, pk):
@@ -107,6 +110,7 @@ def book_create(req):
                 "published_date": json["items"][0]["volumeInfo"]["publishedDate"],
                 "desription": json["items"][0]["volumeInfo"]["description"],
                 "thumbnail": json["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"],
+                "link": json["items"][0]["volumeInfo"]["canonicalVolumeLink"],
             }
         else:
             result = None
@@ -237,7 +241,7 @@ def isbn_search(req, isbn):
     response = requests.get(api_url)
     json = response.json()
 
-    # print(json["items"][0]["volumeInfo"]["title"], json["items"][0]["volumeInfo"]["authors"][0])
+    print(json["items"][0]["volumeInfo"]["canonicalVolumeLink"])
 
     if json:
         result = {
@@ -246,6 +250,7 @@ def isbn_search(req, isbn):
         "published_date": json["items"][0]["volumeInfo"]["publishedDate"],
         "desription": json["items"][0]["volumeInfo"]["description"],
         "thumbnail": json["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"],
+        "link": json["items"][0]["volumeInfo"]["canonicalVolumeLink"],
         }
     else:
         result = None
