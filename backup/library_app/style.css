@@ -18,6 +18,9 @@ main {
     /* background-color: rgb(153, 153, 153); */
 }
 
+footer {
+}
+
 #content {
     /* grid-column: 2 / 2; */
     max-width: 870px;
@@ -257,9 +260,4 @@ ul {
     transform: scale(1.1);
     transition: all .2s ease;
     box-shadow: 10px 10px 10px rgb(0 0 0 / 20%);
-}
-
-.event_display_window {
-    /* flex-wrap: wrap;
-    justify-content: center; */
 }

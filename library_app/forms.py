@@ -1,5 +1,5 @@
 from django import forms
-from .models import Book, Author, User
+from .models import Book, Author, User, Event
 from django.contrib.auth.models import User
 
 class BookForm(forms.ModelForm):
@@ -27,3 +27,11 @@ class AuthorForm(forms.ModelForm):
     class Meta:
         model = Author
         fields = ('name', 'nationality')
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ('title', 'date', 'description')
+        widgets = {
+            'date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }

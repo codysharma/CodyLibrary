@@ -19,14 +19,14 @@ urlpatterns = [
     path('catalog/nonfiction', views.catalog_nf, name='catalog_nf'),
     path('catalog/suggest', views.suggestion_create, name='suggestion_create'),
     path('catalog/search/', views.book_search, name='book_search'),
+    path('catalog/create/search/', views.isbn_search, name='isbn_search'),
     path('borrowed/', views.all_borrowed, name='all_borrowed'),
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my_borrowed'),
     path('authors/create', views.author_create, name='author_create'),
     path('map', views.map, name='map'),
     path('events', views.events_list, name='event_list'),
-
-
-    path('catalog/create/search/', views.isbn_search, name='isbn_search'),
-    path('isbn_search', views.isbn_form, name='isbn_form'),
-    # path('isbn_search/<int:isbn>', views.isbn_search, name='isbn_search')
+    path('events/create', views.event_create, name='event_create'),
+    path('events/<int:pk>', views.event_detail, name='event_detail'),
+    path('events/<int:pk>/edit', views.event_edit, name='event_edit'),
+    path('events/<int:pk>/delete', views.event_delete, name='event_delete'),
 ]

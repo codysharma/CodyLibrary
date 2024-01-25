@@ -1,7 +1,10 @@
+-Make scroll thing for "Staff Reading" section  
+-Style events list page - it's off    
+-Make register button work for event
+
 -The mobile nav bar not working  
 -Make a "requests" model and button for users to request books already loaned out.  
 -Complete reading lists?
--Make events functionality, including a register button, so librarians can see who has registered.  
 
 
 -For formatting code reminders, check: https://bootswatch.com/yeti/   

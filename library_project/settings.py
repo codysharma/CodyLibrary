@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'library_app',
     'bootstrap5',
+    'jquery',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [BASE_DIR / 'library_project' / 'static']
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 LOGIN_REDIRECT_URL = '/catalog/'
 LOGOUT_REDIRECT_URL = '/'

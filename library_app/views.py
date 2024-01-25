@@ -1,12 +1,12 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from .models import Book, User, Author, ReadingList
+from .models import Book, User, Author, ReadingList, Event
 # from .serializers import BookSerializer
 # from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
-from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm
+from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
@@ -24,9 +24,11 @@ CharField.register_lookup(Lower)
 def index(req):
     staff_list = Book.objects.filter(recommended_by__isnull=False)
     book_lists = ReadingList.objects.all()
+    events = Event.objects.all().order_by('date')[:2]
     context = {
         'staff_list': staff_list,
-        'book_lists': book_lists
+        'book_lists': book_lists,
+        'events': events,
         }
     # print(book_lists[0])
     return render(req, 'library_app/index.html', context)
@@ -210,7 +212,43 @@ def map(req):
     return render(req, 'library_app/map.html')
 
 def events_list(req):
-    return render(req, 'library_app/events_list.html')
+    events = Event.objects.all().order_by('date')
+    return render(req, 'library_app/events/events_list.html', {'events': events})
+
+def event_detail(req, pk):
+    event = Event.objects.get(id=pk)
+    return render(req, 'library_app/events/event_detail.html', {'event': event})
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def event_create(req):
+    if req.method == 'POST':
+        form = EventForm(req.POST)
+        if form.is_valid():
+            event = form.save()
+            return redirect('event_detail', pk=event.pk) 
+    else:
+        form = EventForm()
+        return render(req, 'library_app/events/new_event_form.html', {'form': form})
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def event_edit(req, pk):
+    event = Event.objects.get(id=pk)
+    if req.method == "POST":
+        form = EventForm(req.POST, instance=event)
+        if form.is_valid():
+            event = form.save()
+            return redirect('event_detail', pk=event.pk)
+    else:
+        form = EventForm(instance=event)
+    return render(req, 'library_app/events/edit_event_form.html', {'form': form, 'event': event})
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def event_delete(_, pk):
+    Event.objects.get(id=pk).delete()
+    return redirect('event_list')
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)

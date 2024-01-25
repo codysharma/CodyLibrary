@@ -1,0 +1,18 @@
+{% extends 'library_app/base.html' %} 
+{% block content %}
+<h4>Upcoming Events</h4>
+<div class="event_display_window">
+{% for event in events %}
+<a href="{% url 'event_detail' pk=event.pk%}">
+    <div class="event_thumbnail">
+        <div class="thumbnail_text">
+            <p class="thumbnail_title">{{event.title}}</p>
+            <p>{{event.date}}</p>    
+            <p>{{event.description}}</p>
+        </div>        
+    </div>
+</a>
+</div>
+{% endfor %}
+{% endblock %}
+
