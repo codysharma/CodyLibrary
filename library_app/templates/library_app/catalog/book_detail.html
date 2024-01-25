@@ -2,26 +2,46 @@
 {% block search %}
 {% endblock %} 
 {% block content %}
-<h2>"{{book.title}}" by {{book.author}}</h2>
-<img src="{{book.picture_url}}" alt="" class="book_photo">
-<ul>
-    <li>Genre: {{book.genre}}</li>
-    <li>Publication year: {{book.publication_year}}</li>
-    <li>Number in our collection: {{book.number_in_collection}}</li>
-    <li>Location: {{book.location}}</li>
-    <li>ID: {{book.id}}</li>
-    {% if book.borrower %}
-    <li>Status: Currently out on loan</li>
-    {%else%}
-    <li>Status: Currently available</li>
-    {%endif%}
-</ul>   
-{% if user.is_authenticated and book.borrower == None %}
-<a href="{% url 'book_borrow' pk=book.pk %}"><button type="button" class="btn btn-primary" id="borrow_book_button btn-sm">Request This Book</button></a>
-{%endif%}
-{%if user.is_staff %}
-<a href="{% url 'book_edit' pk=book.pk %}"><button type="button" class="btn btn-info">Edit this item</button></a>
-{%else %}
-{%endif%}
+<div id="book-edit-window">
+    <div id="book-edit-window-one">
+        <img src="{{book.picture_url}}" alt="" class="book_photo">
+    </div>
+    <div id="book-edit-window-two">
+        <div class="card mb-3">
+            <h3 class="card-header">{{book.title}}</h3>
+            <div class="card-body">
+              <h5 class="card-title">{{book.author}}</h5>
+            </div>
+            <!-- <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div> -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Genre: {{book.genre}}</li>
+              <li class="list-group-item">Publication year: {{book.publication_year}}</li>
+              <li class="list-group-item">Number in our collection: {{book.number_in_collection}}</li>
+              <li class="list-group-item">Location: {{book.location}}</li>
+              {% if book.borrower %}
+              <li class="list-group-item">Status: Currently out on loan</li>
+              {%else%}
+              <li class="list-group-item">Status: Currently available</li>
+              {%endif%}
+            </ul>
+            <div class="card-body">
+                {% if book.borrower == None %}
+                <p>Login to request this book</p>                
+                {%endif%}
+                {% if user.is_authenticated and book.borrower == None %}
+                <a href="{% url 'book_borrow' pk=book.pk %}"><button type="button" class="btn btn-primary" id="borrow_book_button btn-sm">Request This Book</button></a>
+                {%endif%}
+                {%if user.is_staff %}
+                <a href="{% url 'book_edit' pk=book.pk %}"><button type="button" class="btn btn-info">Edit this item</button></a>
+                {%else %}
+                {%endif%}
+            </div>
+            <!-- <div class="card-footer text-muted">
+            </div> -->
+          </div>
+    </div>
+</div>
 {% endblock %}
 

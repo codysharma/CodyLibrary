@@ -2,12 +2,13 @@
 {%block search%}
 <br>
 <!------------------------ Search function -->
-<div id="search-div">
-    <form method="get" action="{% url 'list_catalog' %}">
-        <input type="text" name="q" placeholder="Search our catalog">
-        <a href="{% url 'book_search' %}"><button type="submit" class="btn btn-outline-info btn-sm">Search</button></a>
-    </form>
-</div>
+<div id="content_header">
+    <div id="search-div">
+        <form method="get" action="{% url 'list_catalog' %}" id="search-form">
+            <input type="text" id="search_bar" name="q" placeholder="Search our catalog" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Tooltip on top">
+            <a href="{% url 'book_search' %}"><button type="submit" class="btn btn-outline-info btn-sm">Search</button></a>
+        </form>
+    </div>
 {%endblock%}
 {% block content %}
 <!-- -----------------Search results get shown -->
@@ -28,6 +29,7 @@
     </div>
 {% else %}
     <h2>Browse our Catalog</h2>
+</div>
     <!---------------------- Pagination -->
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

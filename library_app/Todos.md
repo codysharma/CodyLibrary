@@ -1,4 +1,4 @@
--The mobile nav bar not working    
+-The mobile nav bar not working  
 -Make a "requests" model and button for users to request books already loaned out.  
 -Complete reading lists?
 -Make events functionality, including a register button, so librarians can see who has registered.  

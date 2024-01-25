@@ -28,7 +28,7 @@ def index(req):
         'staff_list': staff_list,
         'book_lists': book_lists
         }
-    print(book_lists[0])
+    # print(book_lists[0])
     return render(req, 'library_app/index.html', context)
 
 def book_detail(req, pk):

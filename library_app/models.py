@@ -43,7 +43,6 @@ class Book(models.Model):
 
 class ReadingList(models.Model):
      list_title = models.CharField(max_length=100)
-     books = models.ManyToManyField(Book, related_name="reading_lists", blank=True, null=True, default=None)
 
      def __str__(self):
           return self.list_title

@@ -8,17 +8,16 @@
 <head>
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'library_app/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon.png'}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cody's Library</title>
 </head>
 <body>
   <header>
-    <div id="header-div-one">
-      <a href="{% url 'index' %}"><img src="{% static 'logo.png' %}" alt="logo"></a>
-    </div>
-    <div id="header-div-two">
-      <h1 class="text-center">Cody's Library</h1>
+    <div id="header-div">
+      <a href="{% url 'index' %}"><img src="{% static 'logo4.png' %}" alt="logo"></a>
+      <a href="{% url 'index' %}"><h1 class="text-center" id="landing-title">Cody's Library</h1></a>
       <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +37,11 @@
                   <a class="dropdown-item" href="{% url 'catalog_nf' %}">Other Non-Fiction Titles</a>
                   {% if user.is_authenticated %}
                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'suggestion_create' %}">Suggest Addition</a>
+                  {% if user.is_staff %}
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'book_create' %}">Add New Item</a>
+                  {% endif %}
                   {% endif %}
                 </div>
               </li>
@@ -49,9 +52,6 @@
                 <a class="nav-link" href="{% url 'event_list' %}">Events</a>
               </li>
               {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'suggestion_create' %}">Suggest Addition</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'my_borrowed' %}">My Borrowed</a>
               </li>
@@ -78,10 +78,12 @@
     </div>
   </header>
   <main>
+    <div id="spacer1"></div>
     <div id="content">
       {% block search %} {% endblock %}
       {% block content %} {% endblock %}
     </div>
+    <div id="spacer2"></div>
   </main>
   <hr>
   <footer>
