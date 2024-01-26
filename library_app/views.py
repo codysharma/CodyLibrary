@@ -34,7 +34,6 @@ def index(req):
         'events': events,
         'len_staff_list': len_staff_list,
         }
-    # print(book_lists[0])
     return render(req, 'library_app/index.html', context)
 
 def book_detail(req, pk):

@@ -34,6 +34,8 @@ class Book(models.Model):
     borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, default=None)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="location", null=True, blank=True)
     recommended_by = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True)
+    staff_blurb = models.TextField(blank=True)
 
     class Meta:
          permissions = (("can_mark_returned", "Set book as returned"),)

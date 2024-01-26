@@ -120,8 +120,8 @@ a:hover {
 }
 
 #book_thumbnail_index {
-    height: 9rem;
-    width: 17rem;
+    height: 15rem;
+    width: 20rem;
 }
 
 .thumbnail_text {
@@ -228,7 +228,7 @@ ul {
 
 #index-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 4fr 1fr;
 }
 
 #index-content-reading {
@@ -293,7 +293,7 @@ ul {
 }
 
 .next {
-    right: -3rem;
+    right: -6rem;
     border-radius: 3px 0 0 3px;
 }
 
