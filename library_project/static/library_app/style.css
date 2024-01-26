@@ -319,3 +319,37 @@ ul {
 .active, .dot:hover {
 background-color: #717171;
 }
+/* Map viewpage */
+.floorplans{
+    width: 75%;
+}
+
+#ush {
+    background-color: #008cba;
+    color: #008cba;
+    width: 30px;
+    z-index: 3;
+    position: absolute;
+    top: 25.5%;
+    left: 10.5%;
+}
+
+#ush:hover {
+    background-color: lightcoral;
+    color: lightcoral;
+}
+
+#wh:hover {
+    background-color: lightcoral;
+    color: lightcoral;
+}
+
+#wh {
+    background-color: #008cba;
+    color: #008cba;
+    width: 30px;
+    z-index: 3;
+    position: absolute;
+    top: 25.5%;
+    left: 13.5%;
+}

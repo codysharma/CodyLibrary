@@ -1,6 +1,19 @@
 {% extends 'library_app/base.html' %} 
+{% load static %}
 {% block content %}
 <h4>Map of the Library</h4>
-<p>Under construction</p>
+<p>Under construction. Note - currently only works in full screen setting </p>
+<div id="map-content">
+    <div id="ground-floor">
+        <h4>Map of the Ground Floor Collections</h4>
+        <img src="{% static 'GroundFloor.png' %}" class="floorplans">
+        <a href="{% url 'catalog_ush' %}"><div id="ush" class="map-link">a</div></a>
+        <a href="{% url 'catalog_wh' %}"><div id="wh" class="map-link">a</div></a>
+    </div>
+    <div id="basement">
+        <h4>Map of the Basement Collections</h4>
+        <img src="{% static 'BasementFloor.png' %}" class="floorplans">
+    </div>
+</div>
 {% endblock %}
 
