@@ -1,10 +1,8 @@
 -Make scroll thing for "Staff Reading" section  
--Style events list page - it's off    
--Make register button work for event
 
+-make events an API from serializer which is pulled on the templates to display
 -The mobile nav bar not working  
 -Make a "requests" model and button for users to request books already loaned out.  
--Complete reading lists?
 
 
 -For formatting code reminders, check: https://bootswatch.com/yeti/   

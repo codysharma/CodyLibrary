@@ -29,6 +29,7 @@
     <div id="index-content-events">
         <h4>Upcoming Events</h4>
         {% for event in events %}
+        <a href="{% url 'event_detail' pk=event.pk%}">
         <div class="event_thumbnail">
             <div class="thumbnail_text">
                 <p class="thumbnail_title">{{event.title}}</p>
@@ -36,6 +37,7 @@
                 <p>{{event.description}}</p>
             </div>        
         </div>
+        </a>
         {% endfor %}
     </div>
 </div>

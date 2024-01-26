@@ -35,3 +35,8 @@ class EventForm(forms.ModelForm):
         widgets = {
             'date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+
+class EventRegisterForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ()

@@ -1,0 +1,29 @@
+{% extends 'library_app/base.html' %} 
+{% block content %}
+    <h3>My Upcoming Events</h3>
+
+    {% if object_list %}
+      <div class="display_window">
+        {% for event in object_list %}
+        <a href="{% url 'event_detail' pk=event.pk%}">
+            <div id="book-edit-window-two">
+                <div class="card mb-3">
+                    <h3 class="card-header">{{event.title}}</h3>
+                    <div class="card-body">
+                      <h5 class="card-title">{{event.date}}</h5>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">{{event.description}}</p>
+                    </div>
+                </div>
+            </div>
+      </a>
+        {% endfor %}
+    </div>
+
+    {% else %}
+      <p>You currently have no registered upcoming events.</p>
+    {% endif %}
+
+{% endblock %}
+

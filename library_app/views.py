@@ -6,7 +6,7 @@ from .models import Book, User, Author, ReadingList, Event
 # from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
-from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm
+from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm, EventRegisterForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
@@ -17,6 +17,8 @@ from django.db.models.functions import Lower
 from django.contrib.postgres.search import SearchQuery, SearchVector, SearchRank
 from django.core.paginator import Paginator
 import requests
+from django.http import QueryDict
+
 
 CharField.register_lookup(Lower)
 
@@ -208,6 +210,15 @@ class LoanedBooksByUserListView(LoginRequiredMixin, ListView):
             # .order_by('due_back')
         )
 
+class my_events_list(LoginRequiredMixin, ListView):
+    model = Event
+    template_name = 'library_app/events/my_event_list.html'
+    
+    def get_queryset(self):
+        return (
+            Event.objects.filter(attendees=self.request.user)
+        )
+
 def map(req):
     return render(req, 'library_app/map.html')
 
@@ -217,7 +228,14 @@ def events_list(req):
 
 def event_detail(req, pk):
     event = Event.objects.get(id=pk)
-    return render(req, 'library_app/events/event_detail.html', {'event': event})
+    attendees = list(event.attendees.all())
+    num_attendees = len(attendees)
+    context = {
+        'event': event, 
+        'attendees': attendees,
+        'num_attendees': num_attendees
+    }
+    return render(req, 'library_app/events/event_detail.html', context)
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)
@@ -249,6 +267,24 @@ def event_edit(req, pk):
 def event_delete(_, pk):
     Event.objects.get(id=pk).delete()
     return redirect('event_list')
+
+@login_required
+def event_register(req, pk):
+    event = Event.objects.get(id=pk)
+    if req.method == "POST":
+        form = EventRegisterForm(req.POST, instance=event)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.attendees.set([req.user])
+            event.save()
+            return redirect('event_detail', pk=event.pk)    
+    else:
+        form = EventRegisterForm(instance=event)
+    context = {
+        'form': form, 
+        'event': event
+    }
+    return render(req, 'library_app/events/event_register.html', context)
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)

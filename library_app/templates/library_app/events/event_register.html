@@ -1,0 +1,20 @@
+{% extends 'library_app/base.html' %} 
+{% block content %}
+<h2>Register for an Event</h2>
+<div id="book-edit-window-two">
+    <div class="card mb-3">
+        <h3 class="card-header">{{event.title}}</h3>
+        <div class="card-body">
+          <h5 class="card-title">{{event.date}}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{event.description}}</p>
+        </div>
+    </div>
+</div>
+<form method="POST" class="post-form">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="save btn btn-info btn-sm">Register</button>
+</form>
+{% endblock %}
+

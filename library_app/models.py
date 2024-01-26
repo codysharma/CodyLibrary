@@ -51,6 +51,7 @@ class Event(models.Model):
      title = models.CharField(max_length=100)
      date = models.DateTimeField()
      description = models.TextField()
+     attendees = models.ManyToManyField(User, related_name='events_attending')
 
      def __str__(self):
           return self.title

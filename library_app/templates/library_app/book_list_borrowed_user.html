@@ -3,8 +3,6 @@
     <h3>My Borrowed Books</h3>
 
     {% if object_list %}
-    <ul>
-
       <div class="display_window">
         {% for book in object_list %}
         <a href="{% url 'book_detail' pk=book.pk%}">

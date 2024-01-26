@@ -13,9 +13,19 @@
             <div class="card-body">
               <p class="card-text">{{event.description}}</p>
             </div>
+            {% if user.is_staff %}
+            <div class="card-body">
+              <p>{{num_attendees}} registered attendees:</p>
+              {% for attendee in attendees %}
+              <ul>
+              <li>{{attendee}}</li>
+             </ul>            
+              {% endfor %}
+            </div>
+            {% endif %}
             <ul class="list-group list-group-flush" style="display: inline;">
                 {% if user.is_authenticated %}
-                <a href=""><button type="button" class="btn btn-primary" disabled id="borrow_book_button btn-sm">Register Here</button></a>
+                <a href="{% url 'event_register' pk=event.pk %}"><button type="button" class="btn btn-primary" disabled id="borrow_book_button btn-sm">Register Here</button></a>
                 {%endif%}
                 {%if user.is_staff %}
                 <a href="{% url 'event_edit' pk=event.pk %}"><button type="button" class="btn btn-info">Update Event</button></a>

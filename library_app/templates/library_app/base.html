@@ -49,8 +49,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'map' %}">Location Map</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'event_list' %}">Events</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'event_list' %}">See Upcoming Events</a>
+                  {% if user.is_authenticated %}
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'my_events_list' %}">My Upcoming Events</a>
+                  {% if user.is_staff %}
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'event_create' %}">Create New Event</a>
+                  {% endif %}
+                  {% endif %}
+                </div>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
