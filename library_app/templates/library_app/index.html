@@ -10,22 +10,35 @@
         </div>
         <div id="staff_reads">
             <h4>What Our Staff is Currently Reading</h4>
-            <div id="currently_reading_display">
-            {% for book in staff_list %}
+            <div class="slideshow-container">
+
+                {% for book in staff_list %}
                 <a href="{% url 'book_detail' pk=book.pk%}">
-                <div class="book_thumbnail" id="book_thumbnail_index">
-                    <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
-                    <div class="thumbnail_text">
-                        <p class="thumbnail_title">{{book.title}}</p>
-                        <p>By: {{book.author}}</p>  
-                        <p>Staff Member Reading It: {{book.recommended_by}}</p>  
+                <div class="mySlides">
+                    <div class="book_thumbnail" id="book_thumbnail_index">
+                        <img src="{{book.picture_url}}" alt="" class="book_thumbnail_photo">
+                        <div class="thumbnail_text">
+                            <p class="thumbnail_title">{{book.title}}</p>
+                            <p>By: {{book.author}}</p>  
+                            <p>Staff Member Reading It: {{book.recommended_by}}</p>  
+                        </div>
                     </div>
                 </div>
-                </a>
-                {% endfor %}
-            </div>
+                </a>    
+                {% endfor %}      
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+                </div>
+                <br>
+                <div style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span> 
+                  <span class="dot" onclick="currentSlide(2)"></span> 
+                  <span class="dot" onclick="currentSlide(3)"></span> 
+                  <span class="dot" onclick="currentSlide(3)"></span> 
+                </div>
         </div>
     </div>
+
     <div id="index-content-events">
         <h4>Upcoming Events</h4>
         {% for event in events %}

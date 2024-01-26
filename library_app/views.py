@@ -25,12 +25,14 @@ CharField.register_lookup(Lower)
 # Create your views here.
 def index(req):
     staff_list = Book.objects.filter(recommended_by__isnull=False)
+    len_staff_list = len(staff_list)
     book_lists = ReadingList.objects.all()
     events = Event.objects.all().order_by('date')[:2]
     context = {
         'staff_list': staff_list,
         'book_lists': book_lists,
         'events': events,
+        'len_staff_list': len_staff_list,
         }
     # print(book_lists[0])
     return render(req, 'library_app/index.html', context)

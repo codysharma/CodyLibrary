@@ -89,7 +89,7 @@ a {
 a:hover {
     color: inherit;
 }
-
+/* formatting for book thumbnails for list view */
 .book_thumbnail {
     width: 15rem;
     height: 7.5rem;
@@ -170,7 +170,7 @@ ul {
     justify-content: flex-start;
     width: 100%;
 }
-
+/* styling for new book form  */
 #new-book-content {
     display: flex;
 }
@@ -238,7 +238,7 @@ ul {
 #index-content-events {
     grid-column: 2 / 2;
 }
-
+/* event thumbnails for list view */
 .event_thumbnail {
     width: 10rem;
     height: 12rem;
@@ -265,6 +265,57 @@ ul {
     justify-content: center;
 }
 
+/* Set event card max width */
 .mb-3 {
     max-width: 400px;
+}
+
+/* Slideshow for staff currently reading */
+.slideshow-container {
+    max-width: 300px;
+    position: relative;
+    margin: auto;
+  }
+  
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    background-color: #008cba;
+    font-weight: bold;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    text-decoration: none;
+}
+
+.next {
+    right: -3rem;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: -3rem;
+}
+
+.prev:hover, .next:hover {
+    background-color: #5bc0de;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+background-color: #717171;
 }
