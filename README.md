@@ -22,6 +22,9 @@ Landing page:
 Logged in to user level:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/acc9d0b5-96e0-4c37-a77f-5c7b838edd7d)
 
+Search performed:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/2332fc85-f6eb-43ba-a73b-547d3bf5ee2d)
+
 Map of the library with each icon as a link to the specific genre catalog:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/5a6de4ed-3326-4a57-8c83-f3d31393664c)
 
