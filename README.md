@@ -16,7 +16,7 @@ Django, Django Templates, PostgreSQL as backend, Python, Dynamic API calls, Boos
 -Turn events list page into an actual calendar - need to serialize the Events model for an API call  
 -Make a "requests" model and button for users to request books already loaned out.    
 
-### Screenshots
+## Screenshots
 Landing page:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/01d06670-d109-4288-89e9-7464fab0048f)
 
