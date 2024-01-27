@@ -26,3 +26,18 @@ Views:
 Stretch goals:  
 -search functionality  
 -front end design using SCSS  
+
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/66465aa6-7698-40d3-8901-436e5c561898)
+
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/5d4129a0-aa48-4b3e-bdfc-a58d2ac2a187)
+
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/c6398224-f093-45b9-beee-e43f684b25df)
+
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/8557b0be-7af1-4f6a-b7f2-4fdc3aae86b6)
+
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/f5c12a15-496f-441c-8b75-26bd28e73183)
+
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/00e8490b-048e-45f1-ad32-a68947df03c0)
+
+
+
