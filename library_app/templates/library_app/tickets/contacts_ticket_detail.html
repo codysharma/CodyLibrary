@@ -8,16 +8,16 @@
         <div class="card mb-3">
             <h3 class="card-header">{{ticket.name}}</h3>
             <div class="card-body">
-              <h5 class="card-title">{{ticket.issue}}</h5>
+              <h5 class="card-title">Category: {{ticket.issue}}</h5>
             </div>
             <div class="card-body">
-              <p class="card-text">{{ticket.description}}</p>
-              <p class="card-text">{{ticket.resolved}}</p>
-              <p class="card-text">{{ticket.last_contact}}</p>
-              <p class="card-text">{{ticket.activity_log}}</p>
+              <p class="card-text">Description: {{ticket.description}}</p>
+              <p class="card-text">Resolved Status: {{ticket.resolved}}</p>
+              <p class="card-text">Date of Last Contact: {{ticket.last_contact}}</p>
+              <p class="card-text">Activity Log{{ticket.activity_log}}</p>
             </div>
             <ul class="list-group list-group-flush" style="display: inline;">
-                <a href=""><button type="button" class="btn btn-primary" id="btn-sm">Edit Ticket</button></a>
+                <a href="{% url 'ticket_edit' pk=ticket.pk %}"><button type="button" class="btn btn-primary" id="btn-sm">Edit Ticket</button></a>
             </ul>
                     <!-- <div class="card-footer text-muted">
             </div> -->

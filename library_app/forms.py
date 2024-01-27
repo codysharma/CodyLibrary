@@ -44,4 +44,12 @@ class EventRegisterForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ('name', 'issue', 'description')
+        fields = ('name', 'email', 'issue', 'description')
+
+class ContactAdminForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('name', 'email', 'issue', 'description', 'resolved', 'last_contact', 'activity_log')
+        # widgets = {
+        #     'last_contact': forms.DateInput(attrs={'type': 'datetime-local'}),
+        # }

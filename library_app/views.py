@@ -6,7 +6,7 @@ from .models import Book, User, Author, ReadingList, Event, Contact
 # from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
-from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm, EventRegisterForm, ContactForm
+from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm, EventRegisterForm, ContactForm, ContactAdminForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
@@ -201,7 +201,7 @@ def signup(req):
 
 class LoanedBooksByUserListView(LoginRequiredMixin, ListView):
     model = Book
-    template_name = 'library_app/book_list_borrowed_user.html'
+    template_name = 'library_app/borrowed/book_list_borrowed_user.html'
     
     def get_queryset(self):
         return (
@@ -291,7 +291,7 @@ def event_register(req, pk):
 @user_passes_test(lambda u:u.is_staff)
 def all_borrowed(req):
     borrowed_list = Book.objects.filter(borrower__isnull=False)
-    return render(req, 'library_app/borrowed_list.html', {'borrowed_list': borrowed_list})
+    return render(req, 'library_app/borrowed/borrowed_list.html', {'borrowed_list': borrowed_list})
 
 def book_search(req):
     q = req.GET.get('q')
@@ -334,12 +334,41 @@ def isbn_search(req, isbn):
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)
-def list_contact(req):
-    contacts_list = Contact.objects.all().order_by('resolved')
-    return render(req, 'library_app/list_contacts.html', {'contacts_list': contacts_list})
+def list_tickets(req):
+    list_tickets = Contact.objects.all().order_by('resolved')
+    return render(req, 'library_app/tickets/list_tickets.html', {'list_tickets': list_tickets})
 
 @login_required
 @user_passes_test(lambda u:u.is_staff)
-def contact_detail(req, pk):
+def ticket_detail(req, pk):
     ticket = Contact.objects.get(id=pk)
-    return render(req, 'library_app/contacts_ticket_detail.html', {'ticket': ticket})
+    return render(req, 'library_app/tickets/contacts_ticket_detail.html', {'ticket': ticket})
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def ticket_edit(req, pk):
+    ticket = Contact.objects.get(id=pk)
+    if req.method == "POST":
+        form = ContactAdminForm(req.POST, instance=ticket)
+        if form.is_valid():
+            ticket = form.save()
+            return redirect('list_tickets')
+    else:
+        form = ContactAdminForm(instance=ticket)
+    return render(req, 'library_app/tickets/edit_ticket_form.html', {'form': form, 'ticket': ticket})
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def ticket_delete(_, pk):
+    Contact.objects.get(id=pk).delete()
+    return redirect('list_tickets')
+
+def ticket_create(req):
+    if req.method == 'POST':
+        form = ContactForm(req.POST)
+        if form.is_valid():
+            ticket = form.save()
+            return redirect('index') 
+    else:
+        form = ContactForm()
+        return render(req, 'library_app/tickets/new_contact_ticket_form.html', {'form': form})

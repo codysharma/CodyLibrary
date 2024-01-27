@@ -1,5 +1,4 @@
 -finish map section - make tooltips appear on hover?  
--make a contact us form   
 
 -make events an API from serializer which is pulled on the templates to display in calendar format  
 -The mobile nav bar not working  

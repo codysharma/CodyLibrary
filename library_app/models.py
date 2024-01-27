@@ -65,11 +65,12 @@ class Event(models.Model):
 
 class Contact(models.Model):
      name = models.CharField(max_length=100)
+     email = models.EmailField(max_length=254, null=True, blank=True, default=None)
      issue = models.CharField(max_length=50, choices=IssueCategories.choices)
      description = models.TextField()
-     resolved = models.BooleanField()
-     last_contact = models.DateField()
-     activity_log = models.TextField()
+     resolved = models.BooleanField(default=False)
+     last_contact = models.DateField(null=True, blank=True, default=None)
+     activity_log = models.TextField(null=True,blank=True, default=None)
 
      def __str__(self):
           return self.name

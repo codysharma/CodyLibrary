@@ -31,7 +31,9 @@ urlpatterns = [
     path('events/<int:pk>/delete', views.event_delete, name='event_delete'),
     path('events/<int:pk>/register', views.event_register, name='event_register'),
     path('myevents/', views.my_events_list.as_view(), name='my_events_list'),
-    path('clientcontact/', views.list_contact, name='list_contact'),
-    path('clientcontact/<int:pk>/', views.contact_detail, name='contact_detail'),
-
+    path('clientcontact/', views.list_tickets, name='list_tickets'),
+    path('clientcontact/create', views.ticket_create, name='ticket_create'),
+    path('clientcontact/<int:pk>/', views.ticket_detail, name='ticket_detail'),
+    path('clientcontact/<int:pk>/edit', views.ticket_edit, name='ticket_edit'),
+    path('clientcontact/<int:pk>/delete', views.ticket_delete, name='ticket_delete'),
 ]

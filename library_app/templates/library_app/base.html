@@ -72,7 +72,7 @@
                 <a class="nav-link" href="{% url 'all_borrowed' %}">All Borrowed</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'list_contact' %}">Contact Us Tickets</a>
+                <a class="nav-link" href="{% url 'list_tickets' %}">Contact Us Tickets</a>
               </li>
               {% endif %}
               <li class="nav-item">
@@ -127,8 +127,10 @@
         <li>Saturday: 12pm-6pm</li>
       </ul>
     </div>
+    <div id="contact_us">
+      <a href="{% url 'ticket_create' %}">Contact Us</a>
+    </div>
   </footer>
-  <!-- have to put script here. Didn't work when placed higher -->
   <script src="{% static 'library_app/library_app.js' %}"></script>
  </body>
 </html>
