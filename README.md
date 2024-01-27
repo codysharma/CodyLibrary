@@ -25,11 +25,17 @@ Logged in to user level:
 Search performed:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/2332fc85-f6eb-43ba-a73b-547d3bf5ee2d)
 
+Book view without login:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/cf08ddce-a454-49d4-8049-27783a552d11)
+
 Map of the library with each icon as a link to the specific genre catalog:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/5a6de4ed-3326-4a57-8c83-f3d31393664c)
 
 List of books individual user has borrowed:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/f9df39e6-bb9f-457d-9866-def9b8d3b0c0)
+
+Book detail with request and edit buttons:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/66410278-2d51-4948-a417-3b491d3127bb)
 
 Contact us ticket list for admin access level:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/b2c0b292-2e54-4377-81be-66f3b8d80e44)
