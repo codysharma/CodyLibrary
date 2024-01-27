@@ -30,3 +30,5 @@ function plusSlides(num) {
 function currentSlide(num) {
     showSlides(slideIndex = num);
 }
+
+
