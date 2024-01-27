@@ -67,6 +67,11 @@ footer {
     flex-direction: row;
 }
 
+footer a:hover {
+    color: #008cba;
+    border-bottom: 1px solid #008cba;
+}
+
 footer div {
     margin:1rem;
 }

@@ -30,6 +30,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catalog</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'list_catalog' %}">General Catalog</a>
+                  <a class="dropdown-item" href="{% url 'catalog_fiction' %}">Fiction</a>
                   <a class="dropdown-item" href="{% url 'catalog_ush' %}">US History</a>
                   <a class="dropdown-item" href="{% url 'catalog_wh' %}">World History</a>
                   <a class="dropdown-item" href="{% url 'catalog_ps' %}">Political Science</a>
@@ -102,14 +103,14 @@
   </main>
   <hr>
   <footer>
-    <div>
+    <div id="support-div">
       Support Us
       <ul>
         <a href=""><li>Donate</li></a>
         <a href=""><li>Volunteer</li></a>
       </ul>
     </div>
-    <div>
+    <div id="media-div">
       Connect with us on social media
       <ul>
         <a href=""><li>Join our newsletter</li></a>
