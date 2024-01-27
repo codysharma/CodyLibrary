@@ -1,5 +1,5 @@
 from django import forms
-from .models import Book, Author, User, Event
+from .models import Book, Author, User, Event, Contact
 from django.contrib.auth.models import User
 
 class BookForm(forms.ModelForm):
@@ -40,3 +40,8 @@ class EventRegisterForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ()
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('name', 'issue', 'description')

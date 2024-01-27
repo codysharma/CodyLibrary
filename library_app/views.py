@@ -1,12 +1,12 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
-from .models import Book, User, Author, ReadingList, Event
+from .models import Book, User, Author, ReadingList, Event, Contact
 # from .serializers import BookSerializer
 # from rest_framework import generics
 from django.views import View
 from django.views.generic.list import ListView
-from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm, EventRegisterForm
+from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm, EventRegisterForm, ContactForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required, user_passes_test, permission_required
@@ -331,3 +331,15 @@ def isbn_search(req, isbn):
         result = None
 
     return result
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def list_contact(req):
+    contacts_list = Contact.objects.all().order_by('resolved')
+    return render(req, 'library_app/list_contacts.html', {'contacts_list': contacts_list})
+
+@login_required
+@user_passes_test(lambda u:u.is_staff)
+def contact_detail(req, pk):
+    ticket = Contact.objects.get(id=pk)
+    return render(req, 'library_app/contacts_ticket_detail.html', {'ticket': ticket})

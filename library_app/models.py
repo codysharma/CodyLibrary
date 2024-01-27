@@ -2,14 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Genres(models.TextChoices):
-        FICTION = 'FICT', 'Fiction'
-        NF = 'NF', 'Non-Fiction'
-        BIO = 'BIO', 'Biography'
-        USH ='USH', 'US History'
-        WH = 'WH', 'World History'
-        PS = 'PS', 'Political Science'
-        EDU = 'EDU', 'Education'
-        APU = 'AUP', 'Architecture and Urban Planning'
+     FICTION = 'FICT', 'Fiction'
+     NF = 'NF', 'Non-Fiction'
+     BIO = 'BIO', 'Biography'
+     USH ='USH', 'US History'
+     WH = 'WH', 'World History'
+     PS = 'PS', 'Political Science'
+     EDU = 'EDU', 'Education'
+     APU = 'AUP', 'Architecture and Urban Planning'
+
+class IssueCategories(models.TextChoices):
+     ITEM = 'ITEM', 'Item'
+     RESEARCH = 'RESEARCH', 'Research'
+     OTHER = 'OTHER', 'Other'
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -57,3 +62,14 @@ class Event(models.Model):
 
      def __str__(self):
           return self.title
+
+class Contact(models.Model):
+     name = models.CharField(max_length=100)
+     issue = models.CharField(max_length=50, choices=IssueCategories.choices)
+     description = models.TextField()
+     resolved = models.BooleanField()
+     last_contact = models.DateField()
+     activity_log = models.TextField()
+
+     def __str__(self):
+          return self.name

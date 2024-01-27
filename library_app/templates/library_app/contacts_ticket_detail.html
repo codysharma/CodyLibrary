@@ -1,0 +1,28 @@
+{% extends 'library_app/base.html' %}
+{% block content %}
+<div id="event-edit-window">
+    <!-- <div id="event-edit-window-one">
+        <img src="{{event.picture_url}}" alt="" class="book_photo">
+    </div> -->
+    <div id="book-edit-window-two">
+        <div class="card mb-3">
+            <h3 class="card-header">{{ticket.name}}</h3>
+            <div class="card-body">
+              <h5 class="card-title">{{ticket.issue}}</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ticket.description}}</p>
+              <p class="card-text">{{ticket.resolved}}</p>
+              <p class="card-text">{{ticket.last_contact}}</p>
+              <p class="card-text">{{ticket.activity_log}}</p>
+            </div>
+            <ul class="list-group list-group-flush" style="display: inline;">
+                <a href=""><button type="button" class="btn btn-primary" id="btn-sm">Edit Ticket</button></a>
+            </ul>
+                    <!-- <div class="card-footer text-muted">
+            </div> -->
+          </div>
+    </div>
+</div>
+{% endblock %}
+
