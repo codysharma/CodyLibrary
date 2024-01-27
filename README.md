@@ -1,43 +1,32 @@
 # CodyLibrary  
-A library website for either my personal library or a full organization, this app brings the management of a library collection to the digital age. Anyone can browse the collection, either the entirety or by genres and can see where in the library each genre is located.  
+A library website with functionality tied to authorization level: browsing and "contact us" without login, borrowing books and registering for events with user, CRUD functionality of models with admin. 
 
-MVP functionality:  
--On load, I see the home page with the search features, nav bar, and login option  
--I can browse the entire catalog or choose specific genres to browse  
--I can click on the map of the library and find where things are located  
--I can log in to place books on hold using google authentication  
--I can log in and suggest a book for the library to purchase  
--As an admin, I can add books to the collection, edit or delete specific items in the collection  
--As an admin, I can add upcoming events to display on the page  
+Tech used: 
+Django, Django Templates, PostgreSQL as backend, Python, Dynamic API calls, Boostrap, Bootstwatch, JS
 
-Views:  
--Landing page  
--Catalog: displays the entire list. Also has links to specific genres which will show only those genres.  
--To open on click: details page to show full description, “place a hold” button  
--Map: where in library to find category. Make this interactive with clickable which takes you to all titles within category list view (eg - mouse over section with US history, click, and open up US history catalog)  
--Events page: displays list of events  
--Stretch - organize these on the display by date, with soonest showing first and a “past” section  
--Login page  
--Create account  
--Edit account  
--Suggest new addition: form to suggest a book not currently in inventory  
--Check my holds   
+Features:
+-Django models, including use of ForeignKey and ManytoMany
+-Search function through books model, including linked field
+-Ticketing system with contact model having issue, resolved status, last contact
+-Display list of books tied to current user logged in
+-Views pages based on filter through the database
 
-Stretch goals:  
--search functionality  
--front end design using SCSS  
+Future ideas:
+-Map page refinement - tooltips on hover to show section title and list of books, fixing placement of icons
+-Turn events list page into an actual calendar - need to serialize the Events model for an API call
+-Make a "requests" model and button for users to request books already loaned out.  
 
-![image](https://github.com/codysharma/CodyLibrary/assets/123990673/66465aa6-7698-40d3-8901-436e5c561898)
+Landing page:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/01d06670-d109-4288-89e9-7464fab0048f)
 
-![image](https://github.com/codysharma/CodyLibrary/assets/123990673/5d4129a0-aa48-4b3e-bdfc-a58d2ac2a187)
+Logged in to user level:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/acc9d0b5-96e0-4c37-a77f-5c7b838edd7d)
 
-![image](https://github.com/codysharma/CodyLibrary/assets/123990673/c6398224-f093-45b9-beee-e43f684b25df)
+Map of the library with each icon as a link to the specific genre catalog:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/5a6de4ed-3326-4a57-8c83-f3d31393664c)
 
-![image](https://github.com/codysharma/CodyLibrary/assets/123990673/8557b0be-7af1-4f6a-b7f2-4fdc3aae86b6)
+List of books individual user has borrowed:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/f9df39e6-bb9f-457d-9866-def9b8d3b0c0)
 
-![image](https://github.com/codysharma/CodyLibrary/assets/123990673/f5c12a15-496f-441c-8b75-26bd28e73183)
-
-![image](https://github.com/codysharma/CodyLibrary/assets/123990673/00e8490b-048e-45f1-ad32-a68947df03c0)
-
-
-
+Contact us ticket list for admin access level:
+![image](https://github.com/codysharma/CodyLibrary/assets/123990673/b2c0b292-2e54-4377-81be-66f3b8d80e44)
