@@ -1,21 +1,22 @@
 # CodyLibrary  
 Todo: post backend to heroku  
 
-Tech used:  
+## Tech used:  
 Django, Django Templates, PostgreSQL as backend, Python, Dynamic API calls, Boostrap, Bootstwatch, JS
 
-Features:  
+## Features:  
 -Django models, including use of ForeignKey and ManytoMany  
 -Search function through books model, including linked field  
 -Ticketing system with contact model having issue, resolved status, last contact  
 -Display list of books tied to current user logged in  
 -Views pages based on filter through the database  
 
-Future ideas:  
+## Future ideas:  
 -Map page refinement - tooltips on hover to show section title and list of books, fixing placement of icons  
 -Turn events list page into an actual calendar - need to serialize the Events model for an API call  
 -Make a "requests" model and button for users to request books already loaned out.    
 
+### Screenshots
 Landing page:
 ![image](https://github.com/codysharma/CodyLibrary/assets/123990673/01d06670-d109-4288-89e9-7464fab0048f)
 
