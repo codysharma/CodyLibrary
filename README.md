@@ -1,9 +1,6 @@
 # CodyLibrary  
 Todo: post backend to heroku  
 
-Overview:  
-A library website with functionality tied to authorization level: browsing and "contact us" without login, borrowing books and registering for events with user, CRUD functionality of models with admin. 
-
 Tech used:  
 Django, Django Templates, PostgreSQL as backend, Python, Dynamic API calls, Boostrap, Bootstwatch, JS
 
