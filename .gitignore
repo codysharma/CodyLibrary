@@ -10,4 +10,4 @@ media
 # By not including the Pipfile.lock, if you're collaborating on a team
 # other team members will have to run pipenv install to create their
 # own local file.
-Pipfile.lock
+# Pipfile.lock
