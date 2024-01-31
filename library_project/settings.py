@@ -38,7 +38,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ddah.herokuapp.com']
 # ALLOWED_HOSTS = []
-
+# Is this my problem?
 
 # Application definition
 
