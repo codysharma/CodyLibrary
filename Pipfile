@@ -13,6 +13,7 @@ django-cors-headers = "*"
 whitenoise = "*"
 python-dotenv = "*"
 django-crispy-forms = "*"
+django-heroku = "*"
 
 [dev-packages]
 
