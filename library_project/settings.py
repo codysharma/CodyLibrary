@@ -31,13 +31,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ddah.herokuapp.com']
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['ddah.herokuapp.com']
+ALLOWED_HOSTS = []
 # Is this my problem?
 
 # Application definition
@@ -97,12 +97,12 @@ WSGI_APPLICATION = 'library_project.wsgi.application'
 
 DATABASES = {
     # 'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    'default': {
-        'HOST': 'ec2-54-234-13-16.compute-1.amazonaws.com',
-        'NAME': 'dnto0g6nfbd5k',
-        'USER': 'sfmtqmjkbjefdl',
-        'PASSWORD': '922655386bff606250b29a5310e777bc082007b514dd24e178beb5f19b0f1b54',
-    } 
+    # 'default': {
+    #     'HOST': 'ec2-54-234-13-16.compute-1.amazonaws.com',
+    #     'NAME': 'dd4jlrealmujh3',
+    #     'USER': 'hnkiexslzruxgs',
+    #     'PASSWORD': '368fc979dd148981f7c8487fa18d0659a2149f555fc1f60656a2da1166021319',
+    # } 
 }
 
 
@@ -171,4 +171,4 @@ REST_FRAMEWORK = {
 # CORS_ALLOW_ALL_ORIGINS = True
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
