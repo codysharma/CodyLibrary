@@ -36,4 +36,6 @@ urlpatterns = [
     path('clientcontact/<int:pk>/', views.ticket_detail, name='ticket_detail'),
     path('clientcontact/<int:pk>/edit', views.ticket_edit, name='ticket_edit'),
     path('clientcontact/<int:pk>/delete', views.ticket_delete, name='ticket_delete'),
+    
+    path('events-calendar', views.EventsCalendar.as_view(), name='events_calendar'),
 ]
