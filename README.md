@@ -1,5 +1,7 @@
 # CodyLibrary  
 Todo: post backend to heroku  
+Todo: implement a due date for books with chronjobs  
+Todo: test due date feature   
 
 ## Tech used:  
 Django, Django Templates, PostgreSQL as backend, Python, Dynamic API calls, Boostrap, Bootstwatch, JS

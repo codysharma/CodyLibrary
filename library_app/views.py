@@ -37,8 +37,14 @@ def index(req):
     return render(req, 'library_app/index.html', context)
 
 def book_detail(req, pk):
-    book = Book.objects.get(id=pk)
+    try:
+        book = Book.objects.get(id=pk)
+    except Book.DoesNotExist:
+        return render(req, 'library_app/catalog/book_not_found.html')
     return render(req, 'library_app/catalog/book_detail.html', {'book': book})
+
+# def book_detail_not_found(req):
+#     return render(req, 'library_app/catalog/book_not_found.html')
 
 def list_catalog(req):
     q = req.GET.get('q')
