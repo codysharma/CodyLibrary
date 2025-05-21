@@ -1,6 +1,6 @@
 import pytest
 from library_app.models import Book, Author
-from library_app.views import book_detail
+from library_app.views import book_detail, list_catalog, catalog_fiction, catalog_ush
 from django.urls import reverse
 from django.test import RequestFactory
 
@@ -31,6 +31,7 @@ def test_book_detail_view(book_fixture, rf):
     assert response.status_code == 200
     assert b'book' in response.content
     assert book.title.encode() in response.content
+    assert b'book_not_found' not in response.content
 
 @pytest.mark.django_db
 def test_book_detail_view_not_found(rf):
@@ -38,5 +39,56 @@ def test_book_detail_view_not_found(rf):
     request = rf.get(url)
     response = book_detail(request, 9999)
 
-    # assert not b'book' in response.content
+    # print(response.content.decode())
+
+    assert response.status_code == 200
+    assert b'book_not_found' in response.content
+
+# test catalog general
+@pytest.mark.django_db
+def test_list_catalog(rf):
+    url = reverse('list_catalog')
+    request = rf.get(url)
+    response = list_catalog(request)
+
+    assert response.status_code == 200
+    assert b'Browse our Catalog' in response.content
+
+# test catalog with sample book
+# ----------------Mock this one?
+@pytest.mark.django_db
+def test_list_catalog_with_example(book_fixture, rf):
+    book = book_fixture
+    url = reverse('list_catalog')
+    request = rf.get(url)
+    response = list_catalog(request)
+
+    assert response.status_code == 200
+    # assert b'Browse our Catalog' in response.content
+     
+
+# test each catalog section
+@pytest.mark.django_db
+def test_catalog_fiction(rf):
+    url = reverse('catalog_fiction')
+    request = rf.get(url)
+    response = catalog_fiction(request)
+
+    assert response.status_code == 200
+    assert b'Browse our Fiction Collection' in response.content
+    assert b'Browse our Non-Fiction Collection' not in response.content
+
+@pytest.mark.django_db
+def test_catalog_ush(rf):
+    url = reverse('catalog_ush')
+    request = rf.get(url)
+    response = catalog_ush(request)
+
+    assert response.status_code == 200
+    assert b'Browse our US History Collection' in response.content
+    assert b'Browse our Non-Fiction Collection' not in response.content
+
+# mockup book create form
+
+
 
