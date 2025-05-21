@@ -54,6 +54,7 @@
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'event_list' %}">See Upcoming Events</a>
+                  <a class="dropdown-item" href="">Events Calendar</a>
                   {% if user.is_authenticated %}
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'my_events_list' %}">My Upcoming Events</a>

@@ -169,6 +169,3 @@ REST_FRAMEWORK = {
 }
 
 # CORS_ALLOW_ALL_ORIGINS = True
-
-# Configure Django App for Heroku.
-django_heroku.settings(locals())

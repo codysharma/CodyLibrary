@@ -20,10 +20,14 @@ urlpatterns = [
     path('catalog/suggest', views.suggestion_create, name='suggestion_create'),
     path('catalog/search/', views.book_search, name='book_search'),
     path('catalog/create/search/', views.isbn_search, name='isbn_search'),
+
+    # path('catalog/book_not_found/', views.book_detail_not_found, name='book_detail_not_found'),
+
     path('borrowed/', views.all_borrowed, name='all_borrowed'),
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my_borrowed'),
     path('authors/create', views.author_create, name='author_create'),
     path('map', views.map, name='map'),
+
     path('events', views.events_list, name='event_list'),
     path('events/create', views.event_create, name='event_create'),
     path('events/<int:pk>', views.event_detail, name='event_detail'),
@@ -31,9 +35,12 @@ urlpatterns = [
     path('events/<int:pk>/delete', views.event_delete, name='event_delete'),
     path('events/<int:pk>/register', views.event_register, name='event_register'),
     path('myevents/', views.my_events_list.as_view(), name='my_events_list'),
+
     path('clientcontact/', views.list_tickets, name='list_tickets'),
     path('clientcontact/create', views.ticket_create, name='ticket_create'),
     path('clientcontact/<int:pk>/', views.ticket_detail, name='ticket_detail'),
     path('clientcontact/<int:pk>/edit', views.ticket_edit, name='ticket_edit'),
     path('clientcontact/<int:pk>/delete', views.ticket_delete, name='ticket_delete'),
+    
+    path('events-calendar', views.EventsCalendar.as_view(), name='events_calendar'),
 ]

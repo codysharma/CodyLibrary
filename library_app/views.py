@@ -2,9 +2,9 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from .models import Book, User, Author, ReadingList, Event, Contact
-# from .serializers import BookSerializer
-# from rest_framework import generics
-from django.views import View
+from .serializers import EventSerializer
+from rest_framework import generics
+# from django.views import View
 from django.views.generic.list import ListView
 from .forms import BookForm, AuthorForm, SuggestedBookForm, BorrowBookForm, EventForm, EventRegisterForm, ContactForm, ContactAdminForm
 from django.contrib.auth import login
@@ -37,8 +37,14 @@ def index(req):
     return render(req, 'library_app/index.html', context)
 
 def book_detail(req, pk):
-    book = Book.objects.get(id=pk)
+    try:
+        book = Book.objects.get(id=pk)
+    except Book.DoesNotExist:
+        return render(req, 'library_app/catalog/book_not_found.html')
     return render(req, 'library_app/catalog/book_detail.html', {'book': book})
+
+# def book_detail_not_found(req):
+#     return render(req, 'library_app/catalog/book_not_found.html')
 
 def list_catalog(req):
     q = req.GET.get('q')
@@ -222,6 +228,10 @@ class my_events_list(LoginRequiredMixin, ListView):
 
 def map(req):
     return render(req, 'library_app/map.html')
+
+class EventsCalendar(generics.ListCreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
 def events_list(req):
     events = Event.objects.all().order_by('date')
