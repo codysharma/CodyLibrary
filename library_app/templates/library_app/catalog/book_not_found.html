@@ -1,0 +1,11 @@
+{% extends 'library_app/catalog/catalog_base.html' %}
+{% block search %}
+{% endblock %} 
+{% block content %}
+<div id="book_not_found">
+    <h3>Book Not Found</h3>
+    <p>Sorry, the book you are looking for is not available in our catalog.</p>
+    <p>If you would like to suggest a new addition to our collection, please log in and click: <a href="{% url 'suggestion_create' %}"><button class="btn btn-outline-info btn-sm">here</button></a></p>
+</div>
+{% endblock %}
+

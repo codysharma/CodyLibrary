@@ -21,7 +21,7 @@ urlpatterns = [
     path('catalog/search/', views.book_search, name='book_search'),
     path('catalog/create/search/', views.isbn_search, name='isbn_search'),
 
-    # path('catalog/book_not_found/', views.book_detail_not_found, name='book_detail_not_found'),
+    path('catalog/book_not_found/', views.book_detail_not_found, name='book_detail_not_found'),
 
     path('borrowed/', views.all_borrowed, name='all_borrowed'),
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my_borrowed'),

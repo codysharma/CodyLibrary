@@ -43,8 +43,8 @@ def book_detail(req, pk):
         return render(req, 'library_app/catalog/book_not_found.html')
     return render(req, 'library_app/catalog/book_detail.html', {'book': book})
 
-# def book_detail_not_found(req):
-#     return render(req, 'library_app/catalog/book_not_found.html')
+def book_detail_not_found(req):
+    return render(req, 'library_app/catalog/book_not_found.html')
 
 def list_catalog(req):
     q = req.GET.get('q')

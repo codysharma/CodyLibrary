@@ -4,6 +4,11 @@ from library_app.views import book_detail
 from django.urls import reverse
 from django.test import RequestFactory
 
+from django.conf import settings
+
+def test_settings_loaded():
+    assert settings.configured
+
 @pytest.fixture
 def book_fixture(db):
     author = Author.objects.create(name="Test Author")
@@ -27,11 +32,11 @@ def test_book_detail_view(book_fixture, rf):
     assert b'book' in response.content
     assert book.title.encode() in response.content
 
-# @pytest.mark.django_db
-# def test_book_detail_view_not_found(rf):
-#     url = reverse('book_detail', kwargs={'pk': 9999})
-#     request = rf.get(url)
-#     response = book_detail(request, 9999)
+@pytest.mark.django_db
+def test_book_detail_view_not_found(rf):
+    url = reverse('book_detail', kwargs={'pk': 9999})
+    request = rf.get(url)
+    response = book_detail(request, 9999)
 
     # assert not b'book' in response.content
 
