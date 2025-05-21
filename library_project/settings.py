@@ -36,7 +36,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ddah.herokuapp.com']
+ALLOWED_HOSTS = ['ddah.herokuapp.com', 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = []
 # Is this my problem?
 
@@ -96,13 +96,13 @@ WSGI_APPLICATION = 'library_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-    'default': {
-        'HOST': 'ec2-54-234-13-16.compute-1.amazonaws.com',
-        'NAME': 'dnto0g6nfbd5k',
-        'USER': 'sfmtqmjkbjefdl',
-        'PASSWORD': '922655386bff606250b29a5310e777bc082007b514dd24e178beb5f19b0f1b54',
-    } 
+    'default': dj_database_url.config(conn_max_age=600)
+    # 'default': {
+    #     'HOST': 'ec2-54-234-13-16.compute-1.amazonaws.com',
+    #     'NAME': 'dnto0g6nfbd5k',
+    #     'USER': 'sfmtqmjkbjefdl',
+    #     'PASSWORD': '922655386bff606250b29a5310e777bc082007b514dd24e178beb5f19b0f1b54',
+    # } 
 }
 
 
