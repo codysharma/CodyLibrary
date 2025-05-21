@@ -1,5 +1,5 @@
 # CodyLibrary  
-Todo: post backend to heroku  
+Todo: post backend to render  
 Todo: create tests, picking up at bookdetailnotfound  
 Todo: implement a due date for books with chronjobs  
 Todo: test due date feature   
