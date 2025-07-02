@@ -1,6 +1,6 @@
 # CodyLibrary  
 
-[![Watch the video](https://www.youtube.com/watch?v=1yDeDKPFpyQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=1yDeDKPFpyQ)
+[![Watch the video](https://img.youtube.com/vi/1yDeDKPFpyQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=1yDeDKPFpyQ)
 
 
 Todo: post backend to render  
