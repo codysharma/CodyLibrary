@@ -1,4 +1,8 @@
 # CodyLibrary  
+
+[![Watch the video](https://www.youtube.com/watch?v=1yDeDKPFpyQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=1yDeDKPFpyQ)
+
+
 Todo: post backend to render  
 Todo: create tests, picking up at bookdetailnotfound  
 Todo: implement a due date for books with chronjobs  

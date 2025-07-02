@@ -54,19 +54,6 @@ def test_list_catalog(rf):
     assert response.status_code == 200
     assert b'Browse our Catalog' in response.content
 
-# test catalog with sample book
-# ----------------Mock this one?
-@pytest.mark.django_db
-def test_list_catalog_with_example(book_fixture, rf):
-    book = book_fixture
-    url = reverse('list_catalog')
-    request = rf.get(url)
-    response = list_catalog(request)
-
-    assert response.status_code == 200
-    # assert b'Browse our Catalog' in response.content
-     
-
 # test each catalog section
 @pytest.mark.django_db
 def test_catalog_fiction(rf):
@@ -87,6 +74,18 @@ def test_catalog_ush(rf):
     assert response.status_code == 200
     assert b'Browse our US History Collection' in response.content
     assert b'Browse our Non-Fiction Collection' not in response.content
+
+# test catalog with sample book
+# -----------------------------------------------------------Mock this one?
+@pytest.mark.django_db
+def test_list_catalog_with_example(book_fixture, rf):
+    book = book_fixture
+    url = reverse('list_catalog')
+    request = rf.get(url)
+    response = list_catalog(request)
+
+    assert response.status_code == 200
+    # assert b'Browse our Catalog' in response.content
 
 # mockup book create form
 
