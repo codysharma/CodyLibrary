@@ -1,0 +1,1 @@
+# Extends base page object for loggin in functionality

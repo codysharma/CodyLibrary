@@ -43,10 +43,16 @@ typing_extensions==4.9.0
 tzdata==2023.4
 urllib3==2.2.0
 whitenoise==6.6.0
-<<<<<<< HEAD
-=======
 
 pytest-django==4.5.2
 python-dotenv==1.0.1
 dj-database-url==2.1.0
->>>>>>> dev
+
+pytest==8.4.1
+selenium==4.34.1
+webdriver-manager==3.8.5
+requests==2.31.0
+# generates HTML reports
+pytest-html==3.2.0
+# allows you to run tests in parallel. In "pytest.ini", add "n=auto" to run tests in parallel
+pytest-xdist==3.3.1
