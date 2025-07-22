@@ -7,7 +7,7 @@ class LandingPage(BasePage):
     __event_thumbnail = (By.CLASS_NAME, "event_thumbnail")
     __catalog_link = (By.XPATH, "/html/body/header/div/nav/div/div/ul/li[1]/a")
     __general_catalog_link = (By.ID, "general-catalog-link")
-    __fiction_catalog_link = (By.ID, "fiction-catalog-link")
+    __fiction_catalog_link = (By.ID, "fic-catalog-link")
     __ush_catalog_link = (By.ID, "ush-catalog-link")
     __wh_catalog_link = (By.ID, "wh-catalog-link")
     __ps_catalog_link = (By.ID, "ps-catalog-link")
@@ -17,6 +17,9 @@ class LandingPage(BasePage):
     __map_link = (By.ID, "map-link")
     __login_page_link = (By.ID, "login-page-link")
     __landing_title = (By.ID, "landing-title")
+    __events_navbar_menu = (By.ID, "events-navbar-menu")
+    __upcoming_events_link = (By.ID, "upcoming-events")
+
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -47,6 +50,8 @@ class LandingPage(BasePage):
         except:
             return False
         
-    def navbar_links_work(self)
-        
+    def navbar_menu_links(self, locator1_location, locator2_location):
+        super()._click(locator1_location)
+
+        super()._click(locator2_location)
     

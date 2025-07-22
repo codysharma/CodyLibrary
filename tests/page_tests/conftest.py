@@ -12,7 +12,6 @@ from selenium.webdriver.common.by import By
 def driver(request):
     browser = request.param
     # request.param is used to get the parameter from the fixture
-    print(f"creating {browser} driver")
 
     if browser == "chrome":
         my_driver = webdriver.Chrome()
@@ -23,12 +22,11 @@ def driver(request):
     else:
         raise TypeError(f"Expected chrome, firefox, or edge but got {browser} instead.")
     
+    my_driver.maximize_window()
     my_driver.get("http://localhost:8000")
-    # my_driver.implicitly_wait(10)
     yield my_driver
     # yield means this executes before the tests. Everything after, runs after the test
 
-    print("closing driver")
     my_driver.quit()
 
 def pytest_addoption(parser):
