@@ -29,14 +29,14 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catalog</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'list_catalog' %}">General Catalog</a>
-                  <a class="dropdown-item" href="{% url 'catalog_fiction' %}">Fiction</a>
-                  <a class="dropdown-item" href="{% url 'catalog_ush' %}">US History</a>
-                  <a class="dropdown-item" href="{% url 'catalog_wh' %}">World History</a>
-                  <a class="dropdown-item" href="{% url 'catalog_ps' %}">Political Science</a>
-                  <a class="dropdown-item" href="{% url 'catalog_edu' %}">Education</a>
-                  <a class="dropdown-item" href="{% url 'catalog_aup' %}">Architecture and Urban Planning</a>
-                  <a class="dropdown-item" href="{% url 'catalog_nf' %}">Other Non-Fiction Titles</a>
+                  <a class="dropdown-item" href="{% url 'list_catalog' %}" id="general-catalog-link">General Catalog</a>
+                  <a class="dropdown-item" href="{% url 'catalog_fiction' %}" id="fic-catalog-link">Fiction</a>
+                  <a class="dropdown-item" href="{% url 'catalog_ush' %}" id="ush-catalog-link">US History</a>
+                  <a class="dropdown-item" href="{% url 'catalog_wh' %}" id="wh-catalog-link">World History</a>
+                  <a class="dropdown-item" href="{% url 'catalog_ps' %}" id="ps-catalog-link">Political Science</a>
+                  <a class="dropdown-item" href="{% url 'catalog_edu' %}" id="edu-catalog-link">Education</a>
+                  <a class="dropdown-item" href="{% url 'catalog_aup' %}" id="aup-catalog-link">Architecture and Urban Planning</a>
+                  <a class="dropdown-item" href="{% url 'catalog_nf' %}" id="nf-catalog-link">Other Non-Fiction Titles</a>
                   {% if user.is_authenticated %}
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{% url 'suggestion_create' %}">Suggest Addition</a>
@@ -48,7 +48,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'map' %}">Location Map</a>
+                <a class="nav-link" href="{% url 'map' %}" id="map-link">Location Map</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Events</a>
@@ -85,7 +85,7 @@
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login/Create Account</a>
+                <a class="nav-link" href="{% url 'login' %}" id="login-page-link">Login/Create Account</a>
               </li>
               {% endif %}
             </ul>
