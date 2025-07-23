@@ -6,7 +6,7 @@ from page_objects.landing_page import LandingPage
 import time
 from urllib.parse import urlparse
 
-class TestPositiveScenarios:
+class TestLandingPage:
     # @pytest.mark.index_page
     def test_index_page_loads(self, driver):
         landing_page = LandingPage(driver)

@@ -2,7 +2,8 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as ec
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
+
 
 
 class BasePage:
@@ -21,6 +22,12 @@ class BasePage:
 
     def _find(self, locator: tuple) -> WebElement:
         return self._driver.find_element(*locator)
+    
+    def _find_visible_element(self, locator: tuple) -> WebElement:
+        element = self._find(locator)
+        if not element.is_displayed():
+            raise ElementNotVisibleException(f"Element {locator} exists on DOM but not visible")
+        return element
 
     def _get_text(self, locator: tuple, time: int = 10) -> str:
         self._wait_until_element_is_visible(locator, time)
